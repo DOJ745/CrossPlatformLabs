@@ -1,28 +1,31 @@
+import 'package:flutter/material.dart';
+
 main(List<String> args) {
-  DeepHouseTrack test2 =
-  new DeepHouseTrack.belahoTrack("Nothing to see", "BRUH");
+
+  DeepHouseTrack test2 = new DeepHouseTrack.belahoTrack("Nothing to see", "BRUH");
 
   test2.summaryInfo();
   test2.setCost = 5.99;
-  print("Track cost - ${test2.getCost}");
-  print("Bought - ${test2.buyOne()}");
-  //test2.showGenre("1234");
+  test2.setDate = "21.04.2021";
 
-  House test3 = new House();
-  test3.showGenre("444");
+  print("Release date - ${test2.getReleaseDate}");
+  print("Track cost - ${test2.getCost}");
+  print("Bought one copy - ${test2.buyOne()}");
+  print("Buy some - ${test2.buySome(amount: 3, buyer: "ME")}");
+
+  print("Buy with bela rubles( - ${test2.buyWithBelRubles(costInRubles, 6)}");
+}
+
+double costInRubles(double amount){
+  return 2.61 * amount;
 }
 
 abstract class Genre {
   void showGenre();
 }
 
-class House extends Genre {
-  void showGenre(String customGenre) {
-    print("CUSTOM SHOW - $customGenre");
-  }
-}
-
 class DeepHouse implements Genre {
+  @override
   void showGenre() {
     print("Deep House");
   }
@@ -61,12 +64,14 @@ class DeepHouseTrack extends DeepHouse {
     return cost * amount;
   }
 
-  double buySome({int amount, String buyer}) {
-    print("Thanks for buying $buyer!");
+  double buySome( {int amount, String buyer} ) {
+    print("Thanks for buying, $buyer!");
     return cost * amount;
   }
 
-  double buyWithBelRubles(double _buySome()) {}
+  double buyWithBelRubles(Function someFunc, int amount) {
+    return someFunc(amount);
+  }
 
   void summaryInfo() {
     print("Name --- $name\n" +

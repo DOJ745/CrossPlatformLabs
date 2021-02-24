@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
 
 main(List<String> args) {
 
@@ -13,10 +13,10 @@ main(List<String> args) {
   print("Bought one copy - ${test2.buyOne()}");
   print("Buy some - ${test2.buySome(amount: 3, buyer: "ME")}");
 
-  print("Buy with bela rubles( - ${test2.buyWithBelRubles(costInRubles, 6)}");
+  print("Buy with belarussian rubles :-( - ${test2.buyWithBelRubles(costInRubles, 6)}");
 }
 
-double costInRubles(double amount){
+double costInRubles(int amount){
   return 2.61 * amount;
 }
 

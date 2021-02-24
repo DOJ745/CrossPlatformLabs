@@ -8,7 +8,7 @@ main(List<String> args) {
   test2.setCost = 5.99;
   test2.setDate = "21.04.2021";
 
-  print("Release date - ${test2.getReleaseDate}");
+  print("Release date - ${DeepHouseTrack.releaseDate}");
   print("Track cost - ${test2.getCost}");
   print("Bought one copy - ${test2.buyOne()}");
   print("Buy some - ${test2.buySome(amount: 3, buyer: "ME")}");

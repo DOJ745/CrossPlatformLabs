@@ -1,4 +1,3 @@
-//import 'package:flutter/material.dart';
 main(List<String> args) {
 
   DeepHouseTrack test2 = new DeepHouseTrack.belahoTrack("Nothing to see", "BRUH");
@@ -13,6 +12,16 @@ main(List<String> args) {
   print("Buy some - ${test2.buySome(amount: 3, buyer: "ME")}");
 
   print("Buy with belarussian rubles :-( - ${test2.buyWithBelRubles(costInRubles, 6)}");
+
+  DeepHouseTrack numberOne = new DeepHouseTrack.nonamed();
+  DeepHouseTrack numberTwo = new DeepHouseTrack.belahoTrack("Concrete Jungles", "BRUH");
+  DeepHouseTrack numberThree = new DeepHouseTrack("1", "TWO", "ThReE", "3:33");
+
+  List<DeepHouseTrack> randomTracks = new List<DeepHouseTrack>();
+  randomTracks.add(numberOne); randomTracks.add(numberTwo); randomTracks.add(numberThree);
+
+  print("RandomTracks List - $randomTracks");
+  print("SET from RandomTracks - ${Set.from(randomTracks)}");
 }
 
 double costInRubles(int amount){
@@ -78,4 +87,26 @@ class DeepHouseTrack extends DeepHouse {
         "Album --- $album\n" +
         "Length --- $lengthInMinutes\n");
   }
+}
+
+class MusicAlbum {
+  List<DeepHouseTrack> tracks;
+  String albumName;
+  static double price;
+
+  set setPrice(double value) => price = value;
+  
+  static void checkPrice(){
+    if(price > 59.99) { print("Price is too high!"); } else { print("Price is affordable"); }
+  }
+
+  MusicAlbum(List<DeepHouseTrack> _tracks, String _albumName){
+    this.tracks = _tracks;
+    this.albumName = _albumName;
+  }
+}
+
+class Artist {
+  List<MusicAlbum> albums;
+  String name;
 }

@@ -16,7 +16,7 @@ main(List<String> args) {
 }
 
 double costInRubles(int amount){
-  return 2.61 * amount;
+  return 2.61 * 5.99 * amount;
 }
 
 abstract class Genre {

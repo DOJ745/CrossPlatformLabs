@@ -13,15 +13,50 @@ main(List<String> args) {
 
   print("Buy with belarussian rubles :-( - ${test2.buyWithBelRubles(costInRubles, 6)}");
 
-  DeepHouseTrack numberOne = new DeepHouseTrack.nonamed();
+  DeepHouseTrack numberOne = new DeepHouseTrack("2", "Belaho", "BRUH", "3:14");
   DeepHouseTrack numberTwo = new DeepHouseTrack.belahoTrack("Concrete Jungles", "BRUH");
-  DeepHouseTrack numberThree = new DeepHouseTrack("1", "TWO", "ThReE", "3:33");
+  DeepHouseTrack numberThree = new DeepHouseTrack("1", "Belaho", "BRUH", "3:33");
 
   List<DeepHouseTrack> randomTracks = new List<DeepHouseTrack>();
-  randomTracks.add(numberOne); randomTracks.add(numberTwo); randomTracks.add(numberThree);
+  randomTracks.add(numberOne);
+  randomTracks.add(numberTwo);
+  randomTracks.add(numberThree);
+
+  randomTracks.removeAt(0);
+  print("Deleted first track from tracklist. It is still here? ${randomTracks.contains(numberOne)}");
 
   print("RandomTracks List - $randomTracks");
-  print("SET from RandomTracks - ${Set.from(randomTracks)}");
+  Set <DeepHouseTrack> someSet = Set.from(randomTracks);
+  print("Something from SET - ${someSet.first.artistName}\n");
+  print("Something from SET - ${someSet.elementAt(1).name} + ${someSet.elementAt(1).lengthInMinutes}");
+
+  MusicAlbum bruh = new MusicAlbum(randomTracks, "BRUH");
+  List<MusicAlbum> belahoAlbums = new List<MusicAlbum>();
+
+  belahoAlbums.add(bruh);
+
+  Artist belaho = new Artist(belahoAlbums, "BELAHO");
+  belaho.showSongsInAlbum("BRUH");
+
+  List<String> command = new List<String>();
+  command.add("first");
+  command.add("next");
+  command.add("last");
+
+  try {
+    for(int i = 0; i < bruh.tracks.length; i++) {
+      bruh.playTracks(command[6]);
+    }
+  }
+  on Exception{
+    print("How does it happened?");
+  }
+  catch (e){
+    print("Fixed!");
+    for(int i = 0; i < bruh.tracks.length; i++) {
+      bruh.playTracks(command[i]);
+    }
+  }
 }
 
 double costInRubles(int amount){
@@ -95,18 +130,74 @@ class MusicAlbum {
   static double price;
 
   set setPrice(double value) => price = value;
-  
+  set setTracks(List<DeepHouseTrack> value) => tracks = value;
+
   static void checkPrice(){
     if(price > 59.99) { print("Price is too high!"); } else { print("Price is affordable"); }
   }
 
-  MusicAlbum(List<DeepHouseTrack> _tracks, String _albumName){
-    this.tracks = _tracks;
-    this.albumName = _albumName;
+  MusicAlbum(this.tracks, this.albumName);
+  MusicAlbum.template()
+    : tracks = null,
+      albumName = "noname";
+
+  void playTracks(String select) {
+    int currentTrack = 0;
+    try {
+
+      if(this.tracks.isNotEmpty) {
+        switch(select){
+
+          N1: case "first":
+            print("Current track: ${this.tracks[0].name}");
+            currentTrack = 0;
+            break;
+
+          case "next":
+            if(this.tracks.length > currentTrack - 1) {
+              print("Current track: ${this.tracks[currentTrack + 1].name}");
+              currentTrack++;
+            } else { continue N1; }
+            break;
+
+          case "last":
+            print("Last one: ${this.tracks[this.tracks.length - 1].name}");
+            currentTrack = this.tracks.length - 1;
+            break;
+
+          case "back":
+            print(this.tracks[currentTrack - 1].name);
+            currentTrack--;
+            break;
+
+          default:
+            break;
+        }
+      }
+    }
+    on Exception{ print("Error!"); }
   }
 }
 
 class Artist {
   List<MusicAlbum> albums;
   String name;
+
+  Artist(this.albums, this.name);
+
+  void showSongsInAlbum(String _albumName) {
+    for (int i = 0; i < albums.length; i++) {
+
+      if(albums.elementAt(i).albumName == _albumName) {
+
+        for(int j = 0; j < albums.elementAt(i).tracks.length; j++) {
+          print("Track name - ${albums.elementAt(i).tracks.elementAt(j).name}");
+          print("Length(min) - ${albums.elementAt(i).tracks.elementAt(j).lengthInMinutes}\n");
+        }
+      }
+      else { print("No such album"); }
+
+    }
+
+  }
 }

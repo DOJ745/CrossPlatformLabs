@@ -1,18 +1,5 @@
 main(List<String> args) {
 
-  DeepHouseTrack test2 = new DeepHouseTrack.belahoTrack("Nothing to see", "BRUH");
-
-  test2.summaryInfo();
-  test2.setCost = 5.99;
-  test2.setDate = "21.04.2021";
-
-  print("Release date - ${DeepHouseTrack.releaseDate}");
-  print("Track cost - ${test2.getCost}");
-  print("Bought one copy - ${test2.buyOne()}");
-  print("Buy some - ${test2.buySome(amount: 3, buyer: "ME")}");
-
-  print("Buy with belarussian rubles :-( - ${test2.buyWithBelRubles(costInRubles, 6)}");
-
   DeepHouseTrack numberOne = new DeepHouseTrack("2", "Belaho", "BRUH", "3:14");
   DeepHouseTrack numberTwo = new DeepHouseTrack.belahoTrack("Concrete Jungles", "BRUH");
   DeepHouseTrack numberThree = new DeepHouseTrack("1", "Belaho", "BRUH", "3:33");
@@ -33,6 +20,9 @@ main(List<String> args) {
   MusicAlbum bruh = new MusicAlbum(randomTracks, "BRUH");
   List<MusicAlbum> belahoAlbums = new List<MusicAlbum>();
 
+  MusicAlbum.setPrice = 79.99;
+  MusicAlbum.checkPrice();
+
   belahoAlbums.add(bruh);
 
   Artist belaho = new Artist(belahoAlbums, "BELAHO");
@@ -43,23 +33,29 @@ main(List<String> args) {
   command.add("next");
   command.add("last");
 
+
   try {
     for(int i = 0; i < bruh.tracks.length; i++) {
       bruh.playTracks(command[6]);
     }
   }
-  on Exception{
+  on RangeError{
     print("How does it happened?");
-  }
-  catch (e){
-    print("Fixed!");
+    print("Fixed with ON!");
     for(int i = 0; i < bruh.tracks.length; i++) {
       bruh.playTracks(command[i]);
     }
   }
+  catch (e){
+    print("Fixed with CATCH!");
+    for(int i = 0; i < bruh.tracks.length; i++) {
+      bruh.playTracks(command[i]);
+    }
+  }
+
 }
 
-double costInRubles(int amount){
+double costInRubles(int amount) {
   return 2.61 * 5.99 * amount;
 }
 
@@ -83,7 +79,7 @@ class DeepHouseTrack extends DeepHouse {
   static double cost;
   static String releaseDate;
 
-  set setCost(double value) => cost = value;
+  static set setCost(double value) => cost = value;
   double get getCost => cost;
 
   set setDate(String release) => releaseDate = release;
@@ -129,10 +125,10 @@ class MusicAlbum {
   String albumName;
   static double price;
 
-  set setPrice(double value) => price = value;
+  static set setPrice(double value) => price = value;
   set setTracks(List<DeepHouseTrack> value) => tracks = value;
 
-  static void checkPrice(){
+  static void checkPrice() {
     if(price > 59.99) { print("Price is too high!"); } else { print("Price is affordable"); }
   }
 
@@ -146,9 +142,10 @@ class MusicAlbum {
     try {
 
       if(this.tracks.isNotEmpty) {
+
         switch(select){
 
-          N1: case "first":
+          firstOne: case "first":
             print("Current track: ${this.tracks[0].name}");
             currentTrack = 0;
             break;
@@ -157,7 +154,7 @@ class MusicAlbum {
             if(this.tracks.length > currentTrack - 1) {
               print("Current track: ${this.tracks[currentTrack + 1].name}");
               currentTrack++;
-            } else { continue N1; }
+            } else { continue firstOne; }
             break;
 
           case "last":

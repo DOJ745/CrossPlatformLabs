@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 main(List<String> args) {
 
   DeepHouseTrack numberOne = new DeepHouseTrack("2", "3:14");
@@ -53,6 +55,13 @@ main(List<String> args) {
     }
   }
 
+  // MIXINS WHERE
+  numberOne.showMusicService();
+  bruh.setCopyrited = "@Belaho";
+  bruh.setLabel = "American Radio";
+
+  MusicAlbumStandard someAlbumStandart = new MusicAlbumStandard();
+  someAlbumStandart.setLabel = "123";
 }
 
 double costInRubles(int amount) {
@@ -70,7 +79,26 @@ class DeepHouse implements Genre {
   }
 }
 
-class DeepHouseTrack extends DeepHouse {
+mixin TrackStandardSpotify{
+  String standardLength = "3:00";
+  String musicService = "Spotify";
+
+  void showMusicService() => print("You can listen this track on $musicService");
+}
+
+class MusicAlbumStandard {
+  String copyrited;
+  String label;
+
+  set setCopyrited(String value) => copyrited = value;
+  set setLabel(String value) => label = value;
+
+  void showInfo(){
+    print("LABEL - $label; Copyrited - $copyrited");
+  }
+}
+
+class DeepHouseTrack extends DeepHouse with TrackStandardSpotify {
   String lengthInMinutes;
   String name;
 
@@ -112,7 +140,7 @@ class DeepHouseTrack extends DeepHouse {
   }
 }
 
-class MusicAlbum {
+class MusicAlbum with MusicAlbumStandard{
   List<DeepHouseTrack> tracks;
   String albumName;
   static double price;
@@ -186,8 +214,7 @@ class Artist {
         }
       }
       else { print("No such album"); }
-
     }
-
   }
+
 }

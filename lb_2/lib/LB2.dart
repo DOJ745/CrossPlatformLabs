@@ -1,8 +1,8 @@
 main(List<String> args) {
 
-  DeepHouseTrack numberOne = new DeepHouseTrack("2", "Belaho", "BRUH", "3:14");
-  DeepHouseTrack numberTwo = new DeepHouseTrack.belahoTrack("Concrete Jungles", "BRUH");
-  DeepHouseTrack numberThree = new DeepHouseTrack("1", "Belaho", "BRUH", "3:33");
+  DeepHouseTrack numberOne = new DeepHouseTrack("2", "3:14");
+  DeepHouseTrack numberTwo = new DeepHouseTrack.belahoTrack("Concrete Jungles", "5:09");
+  DeepHouseTrack numberThree = new DeepHouseTrack("1", "3:33");
 
   List<DeepHouseTrack> randomTracks = new List<DeepHouseTrack>();
   randomTracks.add(numberOne);
@@ -14,7 +14,7 @@ main(List<String> args) {
 
   print("RandomTracks List - $randomTracks");
   Set <DeepHouseTrack> someSet = Set.from(randomTracks);
-  print("Something from SET - ${someSet.first.artistName}\n");
+  print("Something from SET - ${someSet.first.name}\n");
   print("Something from SET - ${someSet.elementAt(1).name} + ${someSet.elementAt(1).lengthInMinutes}");
 
   MusicAlbum bruh = new MusicAlbum(randomTracks, "BRUH");
@@ -71,8 +71,6 @@ class DeepHouse implements Genre {
 }
 
 class DeepHouseTrack extends DeepHouse {
-  String artistName;
-  String album;
   String lengthInMinutes;
   String name;
 
@@ -85,18 +83,14 @@ class DeepHouseTrack extends DeepHouse {
   set setDate(String release) => releaseDate = release;
   String get getReleaseDate => releaseDate;
 
-  DeepHouseTrack(this.name, this.artistName, this.album, this.lengthInMinutes);
+  DeepHouseTrack(this.name, this.lengthInMinutes);
 
   DeepHouseTrack.nonamed()
-      : artistName = "unknown",
-        album = "none",
-        lengthInMinutes = "none",
+      : lengthInMinutes = "none",
         name = "none";
 
   DeepHouseTrack.belahoTrack(String _name, String _album)
-      : artistName = "Belaho",
-        lengthInMinutes = "4:20",
-        album = _album,
+      : lengthInMinutes = "4:20",
         name = _name;
 
   double buyOne({int amount = 1}) {
@@ -114,8 +108,6 @@ class DeepHouseTrack extends DeepHouse {
 
   void summaryInfo() {
     print("Name --- $name\n" +
-        "Artist --- $artistName\n" +
-        "Album --- $album\n" +
         "Length --- $lengthInMinutes\n");
   }
 }
@@ -183,6 +175,7 @@ class Artist {
   Artist(this.albums, this.name);
 
   void showSongsInAlbum(String _albumName) {
+    print("==== Presenting you the tracks of artist ${this.name} ====");
     for (int i = 0; i < albums.length; i++) {
 
       if(albums.elementAt(i).albumName == _albumName) {

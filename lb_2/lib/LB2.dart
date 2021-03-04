@@ -1,4 +1,8 @@
-import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
+
+import 'Artist.dart';
+import 'DeepHouse.dart';
+import 'MusicAlbum.dart';
 
 main(List<String> args) {
 
@@ -62,159 +66,22 @@ main(List<String> args) {
 
   MusicAlbumStandard someAlbumStandart = new MusicAlbumStandard();
   someAlbumStandart.setLabel = "123";
+  List<String> forAlbum = new List<String>();
+  forAlbum.add("HJ"); forAlbum.add("PJ"); forAlbum.add("AAC");
+  someAlbumStandart.productions = forAlbum;
+
+  try{
+    while (someAlbumStandart.moveNext()) {
+      print("IRERATOR - ${ someAlbumStandart.current.toString() }");
+    }
+  }
+  catch(e){
+    print("Iteration is over!");
+  }
+
 }
 
 double costInRubles(int amount) {
   return 2.61 * 5.99 * amount;
 }
 
-abstract class Genre {
-  void showGenre();
-}
-
-class DeepHouse implements Genre {
-  @override
-  void showGenre() {
-    print("Deep House");
-  }
-}
-
-mixin TrackStandardSpotify{
-  String standardLength = "3:00";
-  String musicService = "Spotify";
-
-  void showMusicService() => print("You can listen this track on $musicService");
-}
-
-class MusicAlbumStandard {
-  String copyrited;
-  String label;
-
-  set setCopyrited(String value) => copyrited = value;
-  set setLabel(String value) => label = value;
-
-  void showInfo(){
-    print("LABEL - $label; Copyrited - $copyrited");
-  }
-}
-
-class DeepHouseTrack extends DeepHouse with TrackStandardSpotify {
-  String lengthInMinutes;
-  String name;
-
-  static double cost;
-  static String releaseDate;
-
-  static set setCost(double value) => cost = value;
-  double get getCost => cost;
-
-  set setDate(String release) => releaseDate = release;
-  String get getReleaseDate => releaseDate;
-
-  DeepHouseTrack(this.name, this.lengthInMinutes);
-
-  DeepHouseTrack.nonamed()
-      : lengthInMinutes = "none",
-        name = "none";
-
-  DeepHouseTrack.belahoTrack(String _name, String _album)
-      : lengthInMinutes = "4:20",
-        name = _name;
-
-  double buyOne({int amount = 1}) {
-    return cost * amount;
-  }
-
-  double buySome( {int amount, String buyer} ) {
-    print("Thanks for buying, $buyer!");
-    return cost * amount;
-  }
-
-  double buyWithBelRubles(Function someFunc, int amount) {
-    return someFunc(amount);
-  }
-
-  void summaryInfo() {
-    print("Name --- $name\n" +
-        "Length --- $lengthInMinutes\n");
-  }
-}
-
-class MusicAlbum with MusicAlbumStandard{
-  List<DeepHouseTrack> tracks;
-  String albumName;
-  static double price;
-
-  static set setPrice(double value) => price = value;
-  set setTracks(List<DeepHouseTrack> value) => tracks = value;
-
-  static void checkPrice() {
-    if(price > 59.99) { print("Price is too high!"); } else { print("Price is affordable"); }
-  }
-
-  MusicAlbum(this.tracks, this.albumName);
-  MusicAlbum.template()
-    : tracks = null,
-      albumName = "noname";
-
-  void playTracks(String select) {
-    int currentTrack = 0;
-    try {
-
-      if(this.tracks.isNotEmpty) {
-
-        switch(select){
-
-          firstOne: case "first":
-            print("Current track: ${this.tracks[0].name}");
-            currentTrack = 0;
-            break;
-
-          case "next":
-            if(this.tracks.length > currentTrack - 1) {
-              print("Current track: ${this.tracks[currentTrack + 1].name}");
-              currentTrack++;
-            } else { continue firstOne; }
-            break;
-
-          case "last":
-            print("Last one: ${this.tracks[this.tracks.length - 1].name}");
-            currentTrack = this.tracks.length - 1;
-            break;
-
-          case "back":
-            print(this.tracks[currentTrack - 1].name);
-            currentTrack--;
-            break;
-
-          default:
-            break;
-        }
-      }
-    }
-    on Exception{ print("Error!"); }
-  }
-}
-
-class Artist {
-  List<MusicAlbum> albums;
-  String name;
-
-  Artist(this.albums, this.name);
-
-  void showSongsInAlbum(String _albumName) {
-    print("==== Presenting you the tracks of artist ${this.name} ====");
-    for (int i = 0; i < albums.length; i++) {
-
-      if(albums.elementAt(i).albumName == _albumName) {
-
-        for(int j = 0; j < albums.elementAt(i).tracks.length; j++) {
-          print("Track name - ${albums.elementAt(i).tracks.elementAt(j).name}");
-          print("Length(min) - ${albums.elementAt(i).tracks.elementAt(j).lengthInMinutes}\n");
-        }
-      }
-      else { print("No such album"); }
-    }
-  }
-
-}

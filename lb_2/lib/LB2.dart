@@ -111,7 +111,7 @@ main(List<String> args) {
   print("Iterable class - ${iterableClass.elementAt(0)}");
 
   print("======== JSON ========\n");
-  print( jsonEncode(numberOne.toJson()) );
+  print(" ${jsonEncode(numberOne.toJson())} \n");
 
   print("======== FUTURE ========\n");
   Future<double> future1 = Future( () { return 2015.2510; } );
@@ -119,14 +119,13 @@ main(List<String> args) {
 
   getDataFromFuture();
 
-  Future<String> future2 = Future.delayed(Duration(seconds: 10), () => "Hello from Future");
+  Future<String> future2 = Future.delayed(Duration(seconds: 5), () => "Hello from Future");
   future2.then((value){ print("Somethings coming from Future TWO: $value");});
 
-
   print("======== STREAMS ========\n");
-  print("======== SINGLE ========\n");
 
-  print("Creating a simple stream");
+
+  print("======== SINGLE ========\n");
   Stream<String> stream = new Stream.fromFuture(getDataFromFuture());
   print("Created the stream");
 
@@ -137,9 +136,8 @@ main(List<String> args) {
   print("Code Controller 1 Is Here");
 
   print("======== BROADCAST ========\n");
-
   StreamController<String> streamController = new StreamController.broadcast();
-  print("Creating a StreamController");
+  print("Created a broadcast StreamController");
 
   print("======== SUBSCRIPTION ONE ========\n");
   streamController.stream.listen((data) { print("DataReceived ONE: " + data); },
@@ -152,7 +150,7 @@ main(List<String> args) {
       onError: (error) { print("Some Error TWO"); });
 
   streamController.add("TEST");
-  print("Code Controller 2 Is Here");
+  print("\n=== Code Controller 2 Is Here ===\n");
 }
 
 
@@ -161,7 +159,7 @@ double costInRubles(int amount) {
 }
 
 Future<String> getDataFromFuture() async {
-  await Future.delayed(Duration(seconds: 3));
+  await Future.delayed(Duration(seconds: 10));
   print("Fetched Future Data");
   return "Future is now";
 }

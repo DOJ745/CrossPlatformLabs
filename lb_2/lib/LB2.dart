@@ -111,9 +111,25 @@ main(List<String> args) {
 
   print("======== JSON ========\n");
   print( jsonEncode(numberOne.toJson()) );
+
+  print("======== FUTURE ========\n");
+  Future<double> future1 = Future(() { return 2015.2510; });
+  future1.then((value){ print("Somethings coming from Future1: $value"); });
+
+  getDataFromFuture();
+
+  Future<String> future2 = Future.delayed(Duration(seconds: 5), () => "Hello from Future");
+  future2.then((value){ print("Somethings coming from Future2: $value");});
+
 }
 
 double costInRubles(int amount) {
   return 2.61 * 5.99 * amount;
+}
+
+Future<String> getDataFromFuture() async {
+  await Future.delayed(Duration(seconds: 3));
+  print("Fetched Future Data");
+  return "Future is now";
 }
 

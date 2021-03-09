@@ -114,13 +114,13 @@ main(List<String> args) {
   print( jsonEncode(numberOne.toJson()) );
 
   print("======== FUTURE ========\n");
-  Future<double> future1 = Future(() { return 2015.2510; });
-  future1.then((value){ print("Somethings coming from Future1: $value"); });
+  Future<double> future1 = Future( () { return 2015.2510; } );
+  future1.then((value){ print("Somethings coming from Future ONE: $value"); });
 
   getDataFromFuture();
 
   Future<String> future2 = Future.delayed(Duration(seconds: 5), () => "Hello from Future");
-  future2.then((value){ print("Somethings coming from Future2: $value");});
+  future2.then((value){ print("Somethings coming from Future TWO: $value");});
 
 
   print("======== STREAMS ========\n");

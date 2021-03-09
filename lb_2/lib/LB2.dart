@@ -119,7 +119,7 @@ main(List<String> args) {
 
   getDataFromFuture();
 
-  Future<String> future2 = Future.delayed(Duration(seconds: 5), () => "Hello from Future");
+  Future<String> future2 = Future.delayed(Duration(seconds: 10), () => "Hello from Future");
   future2.then((value){ print("Somethings coming from Future TWO: $value");});
 
 

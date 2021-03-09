@@ -1,5 +1,7 @@
 //import 'package:flutter/material.dart';
 
+import 'dart:convert';
+
 import 'Artist.dart';
 import 'DeepHouse.dart';
 import 'MusicAlbum.dart';
@@ -106,6 +108,9 @@ main(List<String> args) {
 
   print("Length of iterable class - ${iterableClass.length}");
   print("Iterable class - ${iterableClass.elementAt(0)}");
+
+  print("======== JSON ========\n");
+  print( jsonEncode(numberOne.toJson()) );
 }
 
 double costInRubles(int amount) {

@@ -9,7 +9,7 @@ class DeepHouse implements Genre {
   }
 }
 
-mixin TrackStandardSpotify{
+mixin TrackStandardSpotify {
   String standardLength = "3:00";
   String musicService = "Spotify";
 
@@ -24,9 +24,11 @@ class DeepHouseTrack extends DeepHouse with TrackStandardSpotify {
   static String releaseDate;
 
   static set setCost(double value) => cost = value;
+
   double get getCost => cost;
 
   set setDate(String release) => releaseDate = release;
+
   String get getReleaseDate => releaseDate;
 
   DeepHouseTrack(this.name, this.lengthInMinutes);
@@ -43,7 +45,7 @@ class DeepHouseTrack extends DeepHouse with TrackStandardSpotify {
     return cost * amount;
   }
 
-  double buySome( {int amount, String buyer} ) {
+  double buySome({int amount, String buyer}) {
     print("Thanks for buying, $buyer!");
     return cost * amount;
   }
@@ -55,5 +57,16 @@ class DeepHouseTrack extends DeepHouse with TrackStandardSpotify {
   void summaryInfo() {
     print("Name --- $name\n" +
         "Length --- $lengthInMinutes\n");
+  }
+
+  DeepHouseTrack.fromJson(Map<String, dynamic> json)
+      : name = json['name'],
+        lengthInMinutes = json['lengthInMinutes'];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'lengthInMinutes': lengthInMinutes,
+    };
   }
 }

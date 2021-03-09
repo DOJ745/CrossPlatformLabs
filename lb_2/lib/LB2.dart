@@ -3,6 +3,7 @@
 import 'Artist.dart';
 import 'DeepHouse.dart';
 import 'MusicAlbum.dart';
+import 'IterableCollection.dart';
 
 main(List<String> args) {
   print("======== LB2 PART ========\n");
@@ -95,6 +96,16 @@ main(List<String> args) {
   while (someAlbumStandart.moveNext()) {
     print("IRERATOR - ${ someAlbumStandart.current.toString() }");
   }
+
+  print("======== ITERABLE ========\n");
+  var iterableClass = IterableCollection();
+  iterableClass.iterableCollection.add(IterableCollection());
+  iterableClass.iterableCollection.add(IterableCollection());
+  iterableClass.iterableCollection.add(IterableCollection());
+  iterableClass.iterableCollection.add(IterableCollection());
+
+  print("Length of iterable class - ${iterableClass.length}");
+  print("Iterable class - ${iterableClass.elementAt(0)}");
 }
 
 double costInRubles(int amount) {

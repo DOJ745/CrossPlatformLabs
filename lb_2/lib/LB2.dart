@@ -70,14 +70,22 @@ main(List<String> args) {
   forAlbum.add("HJ"); forAlbum.add("PJ"); forAlbum.add("AAC");
   someAlbumStandart.productions = forAlbum;
 
+  // COMPARABLE HERE
+  Artist fakeBelaho = new Artist(belahoAlbums, "BELAHO123");
+  if(belaho.compareTo(fakeBelaho) == 0){
+    print("Compare result - ${ belaho.compareTo(fakeBelaho) } => we found fake artist");
+  }
+  else{
+    print("Compare result - ${ belaho.compareTo(fakeBelaho) } => we found same artist");
+  }
+
+  // ITERATOR HERE
   try{
     while (someAlbumStandart.moveNext()) {
       print("IRERATOR - ${ someAlbumStandart.current.toString() }");
     }
   }
-  catch(e){
-    print("Iteration is over!");
-  }
+  catch(e){ print("Error ahead!"); }
 
 }
 

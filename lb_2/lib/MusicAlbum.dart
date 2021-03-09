@@ -12,17 +12,13 @@ class MusicAlbumStandard implements Iterator{
     print("LABEL - $label; Copyrited - $copyrited");
   }
 
-  @override
-  get current => this.productions.last;
+  var _index = 0;
 
   @override
-  bool moveNext() {
-    if(current != this.productions.first) {
-      this.productions.removeLast();
-      return true;
-    }
-    else return false;
-  }
+  get current => this.productions[_index++];
+  @override
+  bool moveNext() => _index < this.productions.length;
+
 }
 
 class MusicAlbum with MusicAlbumStandard {

@@ -6,6 +6,7 @@ import 'MusicAlbum.dart';
 
 main(List<String> args) {
 
+  print("======== LB2 PART ========\n");
   DeepHouseTrack numberOne = new DeepHouseTrack("2", "3:14");
   DeepHouseTrack numberTwo = new DeepHouseTrack.belahoTrack("Concrete Jungles", "5:09");
   DeepHouseTrack numberThree = new DeepHouseTrack("1", "3:33");
@@ -59,7 +60,9 @@ main(List<String> args) {
     }
   }
 
-  // MIXINS WHERE
+  print("======== LB3 PART ========\n");
+
+  print("======== MIXINS ========\n");
   numberOne.showMusicService();
   bruh.setCopyrited = "@Belaho";
   bruh.setLabel = "American Radio";
@@ -70,7 +73,7 @@ main(List<String> args) {
   forAlbum.add("HJ"); forAlbum.add("PJ"); forAlbum.add("AAC");
   someAlbumStandart.productions = forAlbum;
 
-  // COMPARABLE HERE
+  print("======== COMPARABLE ========\n");
   Artist fakeBelaho = new Artist(belahoAlbums, "BELAHO123");
   if(belaho.compareTo(fakeBelaho) == 0){
     print("Compare result - ${ belaho.compareTo(fakeBelaho) } => we found fake artist");
@@ -78,16 +81,11 @@ main(List<String> args) {
   else{
     print("Compare result - ${ belaho.compareTo(fakeBelaho) } => we found same artist");
   }
-
-  // ITERATOR HERE
-  try{
-    while (someAlbumStandart.moveNext()) {
-      print("IRERATOR - ${ someAlbumStandart.current.toString() }");
-    }
+  
+  print("======== ITERATOR ========\n");
+  while (someAlbumStandart.moveNext()) {
+    print("IRERATOR - ${ someAlbumStandart.current.toString() }");
   }
-  catch(e){ print("Error ahead!"); }
-
-}
 
 double costInRubles(int amount) {
   return 2.61 * 5.99 * amount;

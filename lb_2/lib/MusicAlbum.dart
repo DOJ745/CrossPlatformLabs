@@ -13,11 +13,12 @@ class MusicAlbumStandard implements Iterator{
   }
 
   @override
-  get current => this.productions.removeLast();
+  get current => this.productions.last;
 
   @override
   bool moveNext() {
     if(current != this.productions.first) {
+      this.productions.removeLast();
       return true;
     }
     else return false;

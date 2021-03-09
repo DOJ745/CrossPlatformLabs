@@ -1,5 +1,6 @@
 //import 'package:flutter/material.dart';
 
+import 'dart:async';
 import 'dart:convert';
 
 import 'Artist.dart';
@@ -121,7 +122,39 @@ main(List<String> args) {
   Future<String> future2 = Future.delayed(Duration(seconds: 5), () => "Hello from Future");
   future2.then((value){ print("Somethings coming from Future2: $value");});
 
+
+  print("======== STREAMS ========\n");
+  print("======== SINGLE ========\n");
+
+  print("Creating a simple stream");
+  Stream<String> stream = new Stream.fromFuture(getDataFromFuture());
+  print("Created the stream");
+
+   stream.listen((data) { print("DataReceived: " + data); },
+       onDone: () { print("--- Task Done ---"); },
+       onError: (error) { print("Some Error"); });
+
+  print("Code Controller 1 Is Here");
+
+  print("======== BROADCAST ========\n");
+
+  StreamController<String> streamController = new StreamController.broadcast();
+  print("Creating a StreamController");
+
+  print("======== SUBSCRIPTION ONE ========\n");
+  streamController.stream.listen((data) { print("DataReceived ONE: " + data); },
+      onDone: () { print("--- Task ONE Done ---"); },
+      onError: (error) { print("Some Error ONE"); });
+
+  print("======== SUBSCRIPTION TWO ========\n");
+  streamController.stream.listen((data) { print("DataReceived TWO: " + data); },
+      onDone: () { print("--- Task TWO Done ---"); },
+      onError: (error) { print("Some Error TWO"); });
+
+  streamController.add("TEST");
+  print("Code Controller 2 Is Here");
 }
+
 
 double costInRubles(int amount) {
   return 2.61 * 5.99 * amount;

@@ -69,9 +69,9 @@ main(List<String> args) {
     }
   }
 
-  print("======== LB3 PART ========\n");
+  print("\n======== LB3 PART ========\n");
 
-  print("======== MIXINS ========\n");
+  print("\n======== MIXINS ========\n");
   numberOne.showMusicService();
   bruh.setCopyrited = "@Belaho";
   bruh.setLabel = "American Radio";
@@ -84,7 +84,7 @@ main(List<String> args) {
   forAlbum.add("AAC");
   someAlbumStandart.productions = forAlbum;
 
-  print("======== COMPARABLE ========\n");
+  print("\n======== COMPARABLE ========\n");
   Artist fakeBelaho = new Artist(belahoAlbums, "BELAHO123");
   if (belaho.compareTo(fakeBelaho) == 0) {
     print("Compare result - ${ belaho.compareTo(
@@ -95,25 +95,25 @@ main(List<String> args) {
         fakeBelaho) } => we found same artist");
   }
 
-  print("======== ITERATOR ========\n");
+  print("\n======== ITERATOR ========\n");
   while (someAlbumStandart.moveNext()) {
     print("IRERATOR - ${ someAlbumStandart.current.toString() }");
   }
 
-  print("======== ITERABLE ========\n");
+  print("\n======== ITERABLE ========\n");
   var iterableClass = IterableCollection();
-  iterableClass.iterableCollection.add(IterableCollection());
   iterableClass.iterableCollection.add(IterableCollection());
   iterableClass.iterableCollection.add(IterableCollection());
   iterableClass.iterableCollection.add(IterableCollection());
 
   print("Length of iterable class - ${iterableClass.length}");
   print("Iterable class - ${iterableClass.elementAt(0)}");
+  print("Two elements - ${iterableClass.take(2).toString()}\n");
 
-  print("======== JSON ========\n");
-  print(" ${jsonEncode(numberOne.toJson())} \n");
+  print("\n======== JSON ========\n");
+  print("${ jsonEncode(numberOne.toJson()) } \n");
 
-  print("======== FUTURE ========\n");
+  print("\n======== FUTURE ========\n");
   Future<double> future1 = Future( () { return 2015.2510; } );
   future1.then((value){ print("Somethings coming from Future ONE: $value"); });
 
@@ -122,32 +122,30 @@ main(List<String> args) {
   Future<String> future2 = Future.delayed(Duration(seconds: 5), () => "Hello from Future");
   future2.then((value){ print("Somethings coming from Future TWO: $value");});
 
-  print("======== STREAMS ========\n");
-
-
-  print("======== SINGLE ========\n");
+  print("\n======== STREAMS ========\n");
+  print("\n======== SINGLE ========\n");
   Stream<String> stream = new Stream.fromFuture(getDataFromFuture());
   print("Created the stream");
 
    stream.listen((data) { print("DataReceived: " + data); },
        onDone: () { print("--- Task Done ---"); },
-       onError: (error) { print("Some Error"); });
+       onError: (error) { print("Some Error"); } );
 
   print("Code Controller 1 Is Here");
 
-  print("======== BROADCAST ========\n");
+  print("\n======== BROADCAST ========\n");
   StreamController<String> streamController = new StreamController.broadcast();
   print("Created a broadcast StreamController");
 
-  print("======== SUBSCRIPTION ONE ========\n");
+  print("\n======== SUBSCRIPTION ONE ========\n");
   streamController.stream.listen((data) { print("DataReceived ONE: " + data); },
       onDone: () { print("--- Task ONE Done ---"); },
-      onError: (error) { print("Some Error ONE"); });
+      onError: (error) { print("Some Error ONE"); } );
 
-  print("======== SUBSCRIPTION TWO ========\n");
+  print("\n======== SUBSCRIPTION TWO ========\n");
   streamController.stream.listen((data) { print("DataReceived TWO: " + data); },
       onDone: () { print("--- Task TWO Done ---"); },
-      onError: (error) { print("Some Error TWO"); });
+      onError: (error) { print("Some Error TWO"); } );
 
   streamController.add("TEST");
   print("\n=== Code Controller 2 Is Here ===\n");

@@ -131,8 +131,6 @@ main(List<String> args) {
        onDone: () { print("--- Task Done ---"); },
        onError: (error) { print("Some Error"); } );
 
-  print("Code Controller 1 Is Here");
-
   print("\n======== BROADCAST ========\n");
   StreamController<String> streamController = new StreamController.broadcast();
   print("Created a broadcast StreamController");
@@ -148,7 +146,7 @@ main(List<String> args) {
       onError: (error) { print("Some Error TWO"); } );
 
   streamController.add("TEST");
-  print("\n=== Code Controller 2 Is Here ===\n");
+  print("\n=== END ===\n");
 }
 
 

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lb4_5/Trip/TripElement.dart';
+import 'package:lb4_5/Trip/TripList.dart';
 
 class MainPage extends StatelessWidget{
   @override
@@ -9,13 +11,14 @@ class MainPage extends StatelessWidget{
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           body: Center(
-            child: CustomWidget(),
+            child: TripList(),
         ),
       ),
     );
   }
 }
 
+/*
 extension WidgetModifier on Widget {
 
   Widget padding([EdgeInsetsGeometry value = const EdgeInsets.all(50)]) {
@@ -63,4 +66,4 @@ class CustomWidget extends StatelessWidget {
         .padding(EdgeInsets.symmetric(horizontal: 10, vertical: 10))
         .background(Colors.purple);
   }
-}
+}*/

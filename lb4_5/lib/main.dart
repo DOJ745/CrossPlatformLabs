@@ -3,11 +3,7 @@ import 'Pages/MainPage.dart';
 import 'Trip/TripElement.dart';
 
 void main() {
-  runApp(
-      TripElement(
-      name: "Some text",
-      myColor: Colors.indigoAccent)
-  );
+  runApp(MainPage());
 }
 
 /*

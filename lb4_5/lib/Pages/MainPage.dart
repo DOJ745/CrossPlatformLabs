@@ -25,7 +25,8 @@ extension WidgetModifier on Widget {
     );
   }
 
-  Widget background(Color color) { // Fill
+  // Fill
+  Widget background(Color color) {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: color,
@@ -34,14 +35,16 @@ extension WidgetModifier on Widget {
     );
   }
 
-  Widget cornerRadius(BorderRadiusGeometry radius) { // Round borders
+  // Round borders
+  Widget cornerRadius(BorderRadiusGeometry radius) {
     return ClipRRect(
       borderRadius: radius,
       child: this,
     );
   }
 
-  Widget align([AlignmentGeometry alignment = Alignment.center]) { // Aligment
+  // Alignment
+  Widget align([AlignmentGeometry alignment = Alignment.center]) {
     return Align(
       alignment: alignment,
       child: this,

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TripElement extends StatelessWidget {
+
   final String name;
   final String seasonAndDuration;
   final Color myColor;

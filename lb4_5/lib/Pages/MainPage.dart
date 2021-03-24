@@ -7,7 +7,7 @@ class MainPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.white10),
+        theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.white),
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           body: Center(

@@ -11,13 +11,13 @@ class TripList extends StatelessWidget {
       children: [
         TripElement(
             name: "Some text1",
-            myColor: Colors.indigoAccent),
+            myColor: Colors.red),
         TripElement(
             name: "Some text2",
-            myColor: Colors.indigoAccent),
+            myColor: Colors.red),
         TripElement(
             name: "Some text3",
-            myColor: Colors.indigoAccent),
+            myColor: Colors.red),
       ],
     );
   }

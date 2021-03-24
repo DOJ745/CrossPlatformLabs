@@ -17,16 +17,42 @@ class TripElement extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(25.0),
       child: Container(
-        padding: EdgeInsets.all(55),
-        color: Colors.green,
-        child: Text(
-          name,
-          textDirection: TextDirection.ltr,
-          style: TextStyle(fontSize: 24, color: myColor),
-          textAlign: TextAlign.left,
+        color: Colors.amber,
+        child: Image.asset(
+            "images/cat.jpg",
+          fit: BoxFit.fitWidth,
         ),
       ),
     );
   }
+
+  /*Text(
+  name,
+  textDirection: TextDirection.ltr,
+  style: TextStyle(fontSize: 24, color: myColor),
+  textAlign: TextAlign.left,
+  ),*/
+
+/*
+ Stack(
+          children: <Widget>[
+            Image.asset("images/catapult.png"),
+            Text(
+              name,
+              textDirection: TextDirection.ltr,
+              style: TextStyle(fontSize: 24, color: myColor),
+              textAlign: TextAlign.left,
+            ),
+            Text(
+              name,
+              textDirection: TextDirection.ltr,
+              style: TextStyle(fontSize: 24, color: myColor),
+              textAlign: TextAlign.left,
+            ),
+            Image.asset("images/catapult.png"),
+          ],
+        ),
+*/
+
 
 }

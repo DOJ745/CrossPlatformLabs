@@ -10,13 +10,13 @@ class TripList extends StatelessWidget {
     return ListView(
       children: [
         TripElement(
-            name: "Some text",
+            name: "Some text1",
             myColor: Colors.indigoAccent),
         TripElement(
-            name: "Some text",
+            name: "Some text2",
             myColor: Colors.indigoAccent),
         TripElement(
-            name: "Some text",
+            name: "Some text3",
             myColor: Colors.indigoAccent),
       ],
     );

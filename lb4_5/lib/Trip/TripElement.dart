@@ -5,12 +5,18 @@ class TripElement extends StatelessWidget {
 
   final String name;
   final String seasonAndDuration;
-  final Color myColor;
+  final Color textColor;
+  final String backgroundImageName;
+  final String seasonImage;
+  final String peopleImage;
 
   const TripElement( {Key key,
     this.name,
-    this.myColor,
-    this.seasonAndDuration} ) : super(key: key);
+    this.textColor,
+    this.seasonAndDuration,
+    this.backgroundImageName,
+    this.seasonImage,
+    this.peopleImage } ) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +28,18 @@ class TripElement extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(25.0),
             child: Container(
+              width: 500,
+              height: 255,
               color: Colors.amber,
-              child: Image.asset(
-                "images/cat.jpg",
+              child: Image.asset(backgroundImageName,
                 fit: BoxFit.fitWidth,
               ),
             ),
           ),
           Positioned(
-            top: 85,
+            top: 55,
             left: 35,
-            child: Image.asset("images/catapult.png"),
+            child: Image.asset(seasonImage),
           ),
           Positioned(
             top: 145,
@@ -41,7 +48,10 @@ class TripElement extends StatelessWidget {
             Text(
               name,
               textDirection: TextDirection.ltr,
-              style: TextStyle(fontSize: 40, color: myColor),
+              style: TextStyle(fontSize: 40,
+                  color: textColor,
+                  fontFamily: 'Assistant',
+                  fontWeight: FontWeight.bold),
               textAlign: TextAlign.left,
             ),
           ),
@@ -50,13 +60,15 @@ class TripElement extends StatelessWidget {
             left: 35,
             child:
             Text(
-              "Winter 2021 - 11 days",
+              seasonAndDuration,
               textDirection: TextDirection.ltr,
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(fontSize: 20, color:
+              Colors.white,
+                  fontFamily: 'Assistant'),
             ),
           ),
           Positioned(
-              top: 200,
+              top: 180,
               right: 25,
               child:
               ClipOval(
@@ -67,9 +79,10 @@ class TripElement extends StatelessWidget {
                     width: 60,
                     color: Colors.white,
                     child: ClipOval(
-                      child: Image.asset("images/catapult.png"),
-                  )
-              ),)
+                      child: Image.asset(peopleImage),
+                    ),
+                ),
+              ),
           ),
         ],
       ),

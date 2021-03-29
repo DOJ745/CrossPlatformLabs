@@ -25,14 +25,14 @@ class TripElement extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.20),
+            color: Colors.grey.withOpacity(0.45),
             spreadRadius: 1,
             blurRadius: 1,
-            offset: Offset(0, -3),
+            offset: Offset(0, 8),
           ),
         ],
       ),
-      padding: EdgeInsets.only(bottom: 15),
+      margin: EdgeInsets.only(bottom: 25),
       child: Stack(
         alignment: AlignmentDirectional.topStart,
         children: <Widget>[

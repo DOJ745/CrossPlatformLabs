@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class TripInfo extends StatelessWidget {
 
@@ -21,28 +22,33 @@ class TripInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.10),
+            color: Colors.grey.withOpacity(0.45),
             spreadRadius: 1,
             blurRadius: 1,
-            offset: Offset(0, 10),
+            offset: Offset(0, 0),
           ),
         ],
       ),
-      padding: EdgeInsets.only(bottom: 15),
+      margin: EdgeInsets.only(bottom: 25),
       child: Stack(
-        alignment: AlignmentDirectional.topStart,
+        alignment: Alignment.center,
         children: <Widget>[
           Container(
-            width: 500,
-            height: 255,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.asset(backgroundImageName,
-                fit: BoxFit.fill,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30),
+              ),
+              color: Colors.deepOrangeAccent,
+              image: DecorationImage(
+                  image: AssetImage(backgroundImageName),
+                  fit: BoxFit.fitHeight
               ),
             ),
           ),
@@ -75,23 +81,6 @@ class TripInfo extends StatelessWidget {
               style: TextStyle(fontSize: 20, color:
               Colors.white,
                   fontFamily: 'Assistant'),
-            ),
-          ),
-          Positioned(
-            top: 180,
-            right: 25,
-            child:
-            ClipOval(
-              child:
-              Container(
-                padding: EdgeInsets.all(8.0),
-                height: 60,
-                width: 60,
-                color: Colors.white,
-                child: ClipOval(
-                  child: Image.asset(peopleImage),
-                ),
-              ),
             ),
           ),
         ],

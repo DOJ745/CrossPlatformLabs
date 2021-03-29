@@ -89,7 +89,8 @@ class TripElement extends StatelessWidget {
                     width: 60,
                     color: Colors.white,
                     child: ClipOval(
-                      child: Image.asset(peopleImage),
+                      child: Image.asset(peopleImage,
+                      fit: BoxFit.fill,),
                     ),
                 ),
               ),

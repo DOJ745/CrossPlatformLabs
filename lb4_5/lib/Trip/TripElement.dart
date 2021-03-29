@@ -21,18 +21,28 @@ class TripElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(bottom: 25),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.10),
+            spreadRadius: 1,
+            blurRadius: 1,
+            offset: Offset(0, 10),
+          ),
+        ],
+      ),
+      padding: EdgeInsets.only(bottom: 15),
       child: Stack(
         alignment: AlignmentDirectional.topStart,
         children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(25.0),
-            child: Container(
-              width: 500,
-              height: 255,
-              color: Colors.amber,
+          Container(
+            width: 500,
+            height: 255,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
               child: Image.asset(backgroundImageName,
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.fill,
               ),
             ),
           ),

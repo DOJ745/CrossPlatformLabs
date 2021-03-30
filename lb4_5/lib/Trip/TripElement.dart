@@ -10,13 +10,16 @@ class TripElement extends StatelessWidget {
   final String seasonImage;
   final String peopleImage;
 
-  const TripElement( {Key key,
-    this.name,
-    this.textColor,
-    this.seasonAndDuration,
-    this.backgroundImageName,
-    this.seasonImage,
-    this.peopleImage } ) : super(key: key);
+  const TripElement(
+      {
+        Key key,
+        this.name,
+        this.textColor,
+        this.seasonAndDuration,
+        this.backgroundImageName,
+        this.seasonImage,
+        this.peopleImage
+      } ) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +61,8 @@ class TripElement extends StatelessWidget {
             Text(
               name,
               textDirection: TextDirection.ltr,
-              style: TextStyle(fontSize: 40,
+              style: TextStyle(
+                  fontSize: 40,
                   color: textColor,
                   fontFamily: 'Assistant',
                   fontWeight: FontWeight.bold),
@@ -72,8 +76,9 @@ class TripElement extends StatelessWidget {
             Text(
               seasonAndDuration,
               textDirection: TextDirection.ltr,
-              style: TextStyle(fontSize: 20, color:
-              Colors.white,
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
                   fontFamily: 'Assistant'),
             ),
           ),

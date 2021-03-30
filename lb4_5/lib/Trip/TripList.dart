@@ -13,7 +13,7 @@ class TripList extends StatelessWidget {
         children: [
           TripElement(
             name: "Luksemburg",
-            seasonAndDuration: "Summer trip 2021 - 6 days",
+            seasonAndDuration: "Summer 2021 - 6 days",
             textColor: Colors.white,
             backgroundImageName: "images/Luksemburg.jpg",
             seasonImage: "images/icons/summer_icon.png",

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class TripInfo extends StatelessWidget {
+class TripInfoPicture extends StatelessWidget {
 
   final String name;
   final String seasonAndDuration;
@@ -11,18 +11,21 @@ class TripInfo extends StatelessWidget {
   final String seasonImage;
   final String peopleImage;
 
-  const TripInfo( {Key key,
-    this.name,
-    this.textColor,
-    this.seasonAndDuration,
-    this.backgroundImageName,
-    this.seasonImage,
-    this.peopleImage } ) : super(key: key);
+  const TripInfoPicture(
+      {
+        Key key,
+        this.name,
+        this.textColor,
+        this.seasonAndDuration,
+        this.backgroundImageName,
+        this.seasonImage,
+        this.peopleImage
+      } ) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      //alignment: Alignment.topCenter,
+      height: 450,
       decoration: BoxDecoration(
         color: Colors.green,
         borderRadius: BorderRadius.circular(30),
@@ -31,7 +34,7 @@ class TripInfo extends StatelessWidget {
             color: Colors.grey.withOpacity(0.45),
             spreadRadius: 1,
             blurRadius: 1,
-            offset: Offset(0, 5),
+            offset: Offset(0, 9),
           ),
         ],
       ),
@@ -52,34 +55,37 @@ class TripInfo extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 55,
+            top: 175,
             left: 35,
             child: Image.asset(seasonImage),
           ),
           Positioned(
-            top: 145,
+            top: 255,
             left: 35,
             child:
             Text(
               name,
               textDirection: TextDirection.ltr,
-              style: TextStyle(fontSize: 40,
+              style: TextStyle(
+                  fontSize: 40,
                   color: textColor,
                   fontFamily: 'Assistant',
-                  fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.bold
+              ),
               textAlign: TextAlign.left,
             ),
           ),
           Positioned(
-            top: 195,
+            top: 315,
             left: 35,
-            child:
-            Text(
+            child: Text(
               seasonAndDuration,
               textDirection: TextDirection.ltr,
-              style: TextStyle(fontSize: 20, color:
-              Colors.white,
-                  fontFamily: 'Assistant'),
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontFamily: 'Assistant',
+              ),
             ),
           ),
         ],

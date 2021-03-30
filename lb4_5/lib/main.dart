@@ -4,5 +4,5 @@ import 'Pages/MainPage.dart';
 import 'Trip/TripElement.dart';
 
 void main() {
-  runApp(MainPage());
+  runApp(InfoPage());
 }

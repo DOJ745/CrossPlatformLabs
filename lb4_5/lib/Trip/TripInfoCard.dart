@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class TripInfoPicture extends StatelessWidget {
+class TripInfoCard extends StatelessWidget {
 
   final String name;
   final String seasonAndDuration;
@@ -11,7 +11,7 @@ class TripInfoPicture extends StatelessWidget {
   final String seasonImage;
   final String peopleImage;
 
-  const TripInfoPicture(
+  const TripInfoCard(
       {
         Key key,
         this.name,

@@ -15,7 +15,10 @@ class TripInfoText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(left: 25),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
             slogan,
@@ -30,7 +33,7 @@ class TripInfoText extends StatelessWidget {
             description,
             style: TextStyle(
                 fontSize: 20,
-                color: Colors.grey.withOpacity(0.85),
+                color: Colors.grey,
                 fontFamily: 'Assistant'
             ),
           )

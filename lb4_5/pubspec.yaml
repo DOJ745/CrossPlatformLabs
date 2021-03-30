@@ -60,6 +60,7 @@ flutter:
     - images/icons/spring_icon.png
     - images/icons/summer_icon.png
     - images/icons/winter_icon.png
+    - images/icons/earth.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

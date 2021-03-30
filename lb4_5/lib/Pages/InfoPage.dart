@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lb4_5/Trip/TripInfoText.dart';
-import '../Trip/TripInfoPicture.dart';
+import '../Trip/TripInfoCard.dart';
 
 class InfoPage extends StatelessWidget{
   @override
@@ -13,7 +13,7 @@ class InfoPage extends StatelessWidget{
         body: Container(
           child: Column(
             children: <Widget>[
-              TripInfoPicture(
+              TripInfoCard(
                 name: "Luksemburg",
                 seasonAndDuration: "Summer 2021 - 6 days",
                 textColor: Colors.white,
@@ -23,7 +23,9 @@ class InfoPage extends StatelessWidget{
               ),
               TripInfoText(
                 slogan: "Luksemburg - good place to take new friends with you",
-                description: "some description",
+                description: "A perfect place to spend "
+                    "your summer in county of castles and jokes about "
+                    "who is actually german here.",
               )
             ],
           )

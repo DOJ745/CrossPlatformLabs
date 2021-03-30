@@ -55,12 +55,12 @@ class TripInfoPicture extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 175,
+            top: 225,
             left: 35,
             child: Image.asset(seasonImage),
           ),
           Positioned(
-            top: 255,
+            top: 325,
             left: 35,
             child:
             Text(
@@ -76,7 +76,7 @@ class TripInfoPicture extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 315,
+            top: 375,
             left: 35,
             child: Text(
               seasonAndDuration,

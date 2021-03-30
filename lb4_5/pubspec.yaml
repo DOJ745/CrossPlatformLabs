@@ -61,6 +61,11 @@ flutter:
     - images/icons/summer_icon.png
     - images/icons/winter_icon.png
     - images/icons/earth.png
+    - images/peoples/girl1.jpg
+    - images/peoples/girl2.jpg
+    - images/peoples/man1.jpg
+    - images/peoples/man2.jpg
+    - images/peoples/man3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

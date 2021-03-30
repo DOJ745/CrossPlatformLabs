@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TripElement extends StatelessWidget {
+class TripElementOnePic extends StatelessWidget {
 
   final String name;
   final String seasonAndDuration;
   final Color textColor;
   final String backgroundImageName;
   final String seasonImage;
-  final String peopleImage;
+  final String peopleImageOne;
+  final String peopleImageTwo;
 
-  const TripElement(
+  const TripElementOnePic(
       {
         Key key,
         this.name,
@@ -18,8 +19,21 @@ class TripElement extends StatelessWidget {
         this.seasonAndDuration,
         this.backgroundImageName,
         this.seasonImage,
-        this.peopleImage
+        this.peopleImageOne,
+        this.peopleImageTwo,
       } ) : super(key: key);
+
+  /*const TripElement.twoPictures(
+      {
+        Key key,
+        this.name,
+        this.textColor,
+        this.seasonAndDuration,
+        this.backgroundImageName,
+        this.seasonImage,
+        this.peopleImageOne,
+        this.peopleImageTwo,
+      } ) : super(key: key);*/
 
   @override
   Widget build(BuildContext context) {
@@ -83,22 +97,28 @@ class TripElement extends StatelessWidget {
             ),
           ),
           Positioned(
-              top: 180,
-              right: 25,
-              child:
-              ClipOval(
-                child:
-                Container(
-                    padding: EdgeInsets.all(8.0),
-                    height: 60,
-                    width: 60,
-                    color: Colors.white,
-                    child: ClipOval(
-                      child: Image.asset(peopleImage,
-                      fit: BoxFit.fill,),
-                    ),
+            top: 180,
+            right: 25,
+            child:
+            Container(
+              padding: EdgeInsets.all(3.0),
+              height: 60,
+              width: 60,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                    color: Colors.black,
+                    width: 3.0,
+                    style: BorderStyle.solid
+                ),
+                image: DecorationImage(
+                  fit: BoxFit.fitHeight,
+                  image: AssetImage(
+                    peopleImageOne,
+                  ),
                 ),
               ),
+            ),
           ),
         ],
       ),

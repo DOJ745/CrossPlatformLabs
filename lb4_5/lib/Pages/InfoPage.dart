@@ -9,8 +9,10 @@ class InfoPage extends StatelessWidget{
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Center(
-          child: TripInfo(name: "Luksemburg",
+        body: Container(
+          height: 500,
+          child: TripInfo(
+            name: "Luksemburg",
             seasonAndDuration: "Summer trip 2021 - 6 days",
             textColor: Colors.white,
             backgroundImageName: "images/Luksemburg.jpg",

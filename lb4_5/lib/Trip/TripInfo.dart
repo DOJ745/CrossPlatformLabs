@@ -22,7 +22,7 @@ class TripInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.topCenter,
+      //alignment: Alignment.topCenter,
       decoration: BoxDecoration(
         color: Colors.green,
         borderRadius: BorderRadius.circular(30),

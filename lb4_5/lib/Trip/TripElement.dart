@@ -23,7 +23,7 @@ class TripElement extends StatelessWidget {
 
   Stack peoplesAccounts() {
 
-    double startRightPosition = 15; //25
+    double startRightPosition = 15;
     Stack accountsInRow = Stack(children: <Widget>[]);
 
     Positioned accountStartPosition = Positioned(
@@ -151,57 +151,7 @@ class TripElement extends StatelessWidget {
             child: Container(
               width: 120,
               height: 70,
-              //color: Colors.white,
-              child: peoplesAccounts(),/*Stack(
-                children: <Widget>[
-                  Positioned(
-                    right: 15,
-                    child:
-                      Container(
-                        padding: EdgeInsets.all(3.0),
-                        height: 60,
-                        width: 60,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 3.0,
-                              style: BorderStyle.solid
-                          ),
-                          image: DecorationImage(
-                            fit: BoxFit.fitHeight,
-                            image: AssetImage(
-                              "images/peoples/man2.jpg",
-                            ),
-                          )
-                        ),
-                      ),
-                  ),
-                  Positioned(
-                    right: 45,
-                    child:
-                    Container(
-                      padding: EdgeInsets.all(3.0),
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              color: Colors.black,
-                              width: 3.0,
-                              style: BorderStyle.solid
-                          ),
-                          image: DecorationImage(
-                            fit: BoxFit.fitHeight,
-                            image: AssetImage(
-                              "images/peoples/man2.jpg",
-                            ),
-                          )
-                      ),
-                    ),
-                  ),
-                ],
-              ),*/
+              child: peoplesAccounts(),
             ),
           ),
         ],

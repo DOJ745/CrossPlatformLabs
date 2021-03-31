@@ -182,11 +182,70 @@ class TripElement extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 15,
+            right: 0,
             top: 180,
-            child: peoplesCount(),
+            child: Container(
+              width: 120,
+              height: 70,
+              //color: Colors.white,
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                      child:
+                      Container(
+                        padding: EdgeInsets.all(3.0),
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                              color: Colors.black,
+                              width: 3.0,
+                              style: BorderStyle.solid
+                          ),
+                          image: DecorationImage(
+                            fit: BoxFit.fitHeight,
+                            image: AssetImage(
+                              "images/peoples/man2.jpg",
+                            ),
+                          )
+                        ),
+                      ),
+                  ),
+                  Positioned(
+                    left: 35,
+                    child:
+                    Container(
+                      padding: EdgeInsets.all(3.0),
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                              color: Colors.black,
+                              width: 3.0,
+                              style: BorderStyle.solid
+                          ),
+                          image: DecorationImage(
+                            fit: BoxFit.fitHeight,
+                            image: AssetImage(
+                              "images/peoples/man2.jpg",
+                            ),
+                          )
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-          /*Positioned(
+        ],
+      ),
+    );
+  }
+}
+
+/*Positioned(
             top: 180,
             right: 25,
             child:
@@ -210,8 +269,3 @@ class TripElement extends StatelessWidget {
               ),
             ),
           ),*/
-        ],
-      ),
-    );
-  }
-}

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'TripElement.dart';
-import 'TripElementTwoPic.dart';
 
 class TripList extends StatelessWidget {
 
@@ -21,14 +20,13 @@ class TripList extends StatelessWidget {
             seasonImage: "images/icons/summer_icon.png",
             peopleImages: ["images/peoples/girl2.jpg", "images/peoples/man2.jpg"],
           ),
-          TripElementTwoPic(
+          TripElement(
             name: "London",
             seasonAndDuration: "Autumn 2020 - 12 days",
             textColor: Colors.white,
             backgroundImageName: "images/London.jpg",
             seasonImage: "images/icons/autumn_icon.png",
-            peopleImageOne: "images/peoples/girl2.jpg",
-            peopleImageTwo: "images/peoples/man2.jpg",
+            peopleImages: ["images/peoples/girl1.jpg"],
           ),
           TripElement(
             name: "Scotland",

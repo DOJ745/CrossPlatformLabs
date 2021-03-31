@@ -21,52 +21,40 @@ class TripElement extends StatelessWidget {
         this.peopleImages,
       } ) : super(key: key);
 
-  Positioned peoplesCount() {
-    Stack picturesInRow = Stack(children: <Widget>[],);
-    Positioned outputRow = Positioned(
-        top: 180,
-        right: 25,
-        child: Container(
-          height: 80,
-          width: 100,
-          color: Colors.black,
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                top: 5,
-                right: 5,
-                child: Container(
-                  padding: EdgeInsets.all(3.0),
-                  height: 60,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                        color: Colors.black,
-                        width: 3.0,
-                        style: BorderStyle.solid
-                    ),
-                    image: DecorationImage(
-                      fit: BoxFit.fitHeight,
-                      image: AssetImage(
-                        "",
-                      ),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        )
+  Stack peoplesAccounts() {
+
+    double startRightPosition = 15; //25
+    Stack accountsInRow = Stack(children: <Widget>[]);
+
+    Positioned accountStartPosition = Positioned(
+      right: startRightPosition,
+      child:
+      Container(
+        padding: EdgeInsets.all(3.0),
+        height: 60,
+        width: 60,
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+                color: Colors.black,
+                width: 3.0,
+                style: BorderStyle.solid
+            ),
+            image: DecorationImage(
+              fit: BoxFit.fitHeight,
+              image: AssetImage(
+                peopleImages.elementAt(0),
+              ),
+            )
+        ),
+      ),
     );
-    double startRightPosition = 25; //25
-    double topPosition = 100; //180
+
     if (peopleImages.length > 1) {
       for (int i = 0; i < peopleImages.length; i++) {
-            picturesInRow.children.insert(i,
+        accountsInRow.children.insert(i,
                 Positioned(
-                  top: topPosition,
-                  right: startRightPosition -= 15 * i,
+                  right: startRightPosition += 30 * i,
                   child: Container(
                     padding: EdgeInsets.all(3.0),
                     height: 60,
@@ -91,33 +79,9 @@ class TripElement extends StatelessWidget {
       }
     }
     else{
-      picturesInRow.children.insert(0,
-          Positioned(
-            top: topPosition,
-            right: startRightPosition -= 15,
-            child: Container(
-              padding: EdgeInsets.all(3.0),
-              height: 60,
-              width: 60,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                    color: Colors.black,
-                    width: 3.0,
-                    style: BorderStyle.solid
-                ),
-                image: DecorationImage(
-                  fit: BoxFit.fitHeight,
-                  image: AssetImage(
-                    peopleImages.elementAt(0),
-                  ),
-                ),
-              ),
-            ),
-          )
-      );
+      accountsInRow.children.insert(0, accountStartPosition);
     }
-    return outputRow;
+    return accountsInRow;
   }
 
   @override
@@ -188,10 +152,11 @@ class TripElement extends StatelessWidget {
               width: 120,
               height: 70,
               //color: Colors.white,
-              child: Stack(
+              child: peoplesAccounts(),/*Stack(
                 children: <Widget>[
                   Positioned(
-                      child:
+                    right: 15,
+                    child:
                       Container(
                         padding: EdgeInsets.all(3.0),
                         height: 60,
@@ -213,7 +178,7 @@ class TripElement extends StatelessWidget {
                       ),
                   ),
                   Positioned(
-                    left: 35,
+                    right: 45,
                     child:
                     Container(
                       padding: EdgeInsets.all(3.0),
@@ -236,7 +201,7 @@ class TripElement extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
+              ),*/
             ),
           ),
         ],
@@ -244,28 +209,3 @@ class TripElement extends StatelessWidget {
     );
   }
 }
-
-/*Positioned(
-            top: 180,
-            right: 25,
-            child:
-            Container(
-              padding: EdgeInsets.all(3.0),
-              height: 60,
-              width: 60,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                    color: Colors.black,
-                    width: 3.0,
-                    style: BorderStyle.solid
-                ),
-                image: DecorationImage(
-                  fit: BoxFit.fitHeight,
-                  image: AssetImage(
-                    peopleImageOne,
-                  ),
-                ),
-              ),
-            ),
-          ),*/

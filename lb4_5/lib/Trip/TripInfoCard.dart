@@ -9,7 +9,6 @@ class TripInfoCard extends StatelessWidget {
   final Color textColor;
   final String backgroundImageName;
   final String seasonImage;
-  final String peopleImage;
 
   const TripInfoCard(
       {
@@ -19,7 +18,6 @@ class TripInfoCard extends StatelessWidget {
         this.seasonAndDuration,
         this.backgroundImageName,
         this.seasonImage,
-        this.peopleImage
       } ) : super(key: key);
 
   @override

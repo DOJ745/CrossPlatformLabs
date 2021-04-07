@@ -1,41 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Trip.dart';
 import 'TripElement.dart';
 
 class TripList extends StatelessWidget {
 
-  final List<String> names;
-  final List<String> seasonsAndDurations;
-  final List<Color> textColors;
-  final List<String> backgroundImagesNames;
-  final List<String> seasonsImages;
-  final List< List<String> > peoplesImages;
-  final int itemCount;
+  final List<Trip> tripCollection;
 
   const TripList(
       {
         Key key,
-        this.names,
-        this.seasonsAndDurations,
-        this.textColors,
-        this.backgroundImagesNames,
-        this.seasonsImages,
-        this.peoplesImages,
-        this.itemCount
+        this.tripCollection,
       } ) : super(key: key);
 
-  ListView fillList(int elementAmount){
+  ListView fillList(){
     return ListView.builder(
-        itemCount: elementAmount,
+        itemCount: tripCollection.length,
         itemBuilder: (context, index) {
           return TripElement(
-            name: names.elementAt(index),
-            seasonAndDuration: seasonsAndDurations.elementAt(index),
-            textColor: textColors.elementAt(index),
-            backgroundImageName: backgroundImagesNames.elementAt(index),
-            seasonImage: seasonsAndDurations.elementAt(index),
-            peopleImages: peoplesImages.elementAt(index),
+            trip: tripCollection.elementAt(index),
           );
         }
     );
@@ -46,7 +30,7 @@ class TripList extends StatelessWidget {
     return Container(
       height: 560,
       margin: EdgeInsets.only(left: 15.0, right: 15.0),
-      child: fillList(itemCount)
+      child: fillList()
     );
   }
 }

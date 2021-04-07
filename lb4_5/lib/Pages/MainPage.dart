@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lb4_5/Trip/Trip.dart';
 import 'package:lb4_5/Trip/TripList.dart';
 
 class MainPage extends StatelessWidget{
+
+  Trip testTrip = new Trip();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -46,33 +50,7 @@ class MainPage extends StatelessWidget{
                     ),
                   ),
                   TripList(
-                    itemCount: 4,
-                    names: ["Luksemburg", "London", "Scotland", "Redwood"],
-                    seasonsAndDurations: [
-                      "Summer 2021 - 6 days",
-                      "Autumn 2020 - 12 days",
-                      "Winter 2019 - 10 days",
-                      "Spring 2020 - 3 days"
-                    ],
-                    textColors: [Colors.white, Colors.white, Colors.white, Colors.white],
-                    backgroundImagesNames: [
-                      "images/Luksemburg.jpg",
-                      "images/London.jpg",
-                      "images/Scotland.jpg",
-                      "images/Redwood.jpg"
-                    ],
-                    seasonsImages: [
-                      "images/icons/summer_icon.png",
-                      "images/icons/autumn_icon.png",
-                      "images/icons/winter_icon.png",
-                      "images/icons/spring_icon.png"
-                    ],
-                    peoplesImages: [
-                      ["images/peoples/girl2.jpg", "images/peoples/man2.jpg"],
-                      ["images/peoples/girl1.jpg"],
-                      ["images/peoples/man3.jpg"],
-                      ["images/peoples/man1.jpg"]
-                    ],
+                    tripCollection: testTrip.createDefaultCollection(),
                   ),
                ]
            ),

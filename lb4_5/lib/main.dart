@@ -1,13 +1,13 @@
-/*import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'Pages/InfoPage.dart';
 import 'Pages/MainPage.dart';
 
 void main() {
   runApp(MainPage());
-}*/
+}
 
-import 'package:flutter/material.dart';
 
+/*
 void main() {
   runApp(
       MaterialApp(
@@ -206,4 +206,4 @@ class ChoiceCardRead extends StatelessWidget {
       ),
     );
   }
-}
+}*/

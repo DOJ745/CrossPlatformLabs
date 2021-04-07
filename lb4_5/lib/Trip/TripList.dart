@@ -28,7 +28,7 @@ class TripList extends StatelessWidget {
   ListView fillList(int elementAmount){
     return ListView.builder(
         itemCount: elementAmount,
-        itemBuilder: (context, index){
+        itemBuilder: (context, index) {
           return TripElement(
             name: names.elementAt(index),
             seasonAndDuration: seasonsAndDurations.elementAt(index),

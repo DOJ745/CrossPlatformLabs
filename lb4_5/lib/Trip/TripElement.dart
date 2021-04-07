@@ -1,24 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'Trip.dart';
 
 class TripElement extends StatelessWidget {
 
-  final String name;
-  final String seasonAndDuration;
-  final Color textColor;
-  final String backgroundImageName;
-  final String seasonImage;
-  final List<String> peopleImages;
+  final Trip trip;
 
   const TripElement(
       {
         Key key,
-        this.name,
-        this.textColor,
-        this.seasonAndDuration,
-        this.backgroundImageName,
-        this.seasonImage,
-        this.peopleImages,
+        this.trip
       } ) : super(key: key);
 
   Stack peoplesAccounts() {
@@ -43,15 +34,15 @@ class TripElement extends StatelessWidget {
             image: DecorationImage(
               fit: BoxFit.fitHeight,
               image: AssetImage(
-                peopleImages.elementAt(0),
+                trip.peopleImages.elementAt(0),
               ),
             )
         ),
       ),
     );
 
-    if (peopleImages.length > 1) {
-      for (int i = 0; i < peopleImages.length; i++) {
+    if (trip.peopleImages.length > 1) {
+      for (int i = 0; i < trip.peopleImages.length; i++) {
         accountsInRow.children.insert(i,
                 Positioned(
                   right: startRightPosition += 30 * i,
@@ -69,7 +60,7 @@ class TripElement extends StatelessWidget {
                       image: DecorationImage(
                         fit: BoxFit.fitHeight,
                         image: AssetImage(
-                          peopleImages.elementAt(i),
+                         trip.peopleImages.elementAt(i),
                         ),
                       ),
                     ),
@@ -107,7 +98,7 @@ class TripElement extends StatelessWidget {
             height: 255,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset(backgroundImageName,
+              child: Image.asset(trip.backgroundImageName,
                 fit: BoxFit.fill,
               ),
             ),
@@ -115,18 +106,18 @@ class TripElement extends StatelessWidget {
           Positioned(
             top: 55,
             left: 35,
-            child: Image.asset(seasonImage),
+            child: Image.asset(trip.seasonImage),
           ),
           Positioned(
             top: 145,
             left: 35,
             child:
             Text(
-              name,
+              trip.name,
               textDirection: TextDirection.ltr,
               style: TextStyle(
                   fontSize: 40,
-                  color: textColor,
+                  color: trip.textColor,
                   fontFamily: 'Assistant',
                   fontWeight: FontWeight.bold),
               textAlign: TextAlign.left,
@@ -137,7 +128,7 @@ class TripElement extends StatelessWidget {
             left: 35,
             child:
             Text(
-              seasonAndDuration,
+              trip.seasonAndDuration,
               textDirection: TextDirection.ltr,
               style: TextStyle(
                   fontSize: 20,

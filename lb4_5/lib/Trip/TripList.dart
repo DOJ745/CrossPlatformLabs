@@ -11,6 +11,7 @@ class TripList extends StatelessWidget {
   final List<String> backgroundImagesNames;
   final List<String> seasonsImages;
   final List< List<String> > peoplesImages;
+  final int itemCount;
 
   const TripList(
       {
@@ -21,6 +22,7 @@ class TripList extends StatelessWidget {
         this.backgroundImagesNames,
         this.seasonsImages,
         this.peoplesImages,
+        this.itemCount
       } ) : super(key: key);
 
   ListView fillList(int elementAmount){
@@ -44,42 +46,7 @@ class TripList extends StatelessWidget {
     return Container(
       height: 560,
       margin: EdgeInsets.only(left: 15.0, right: 15.0),
-      child: /*ListView(
-        children: <Widget>[
-          TripElement(
-            name: "Luksemburg",
-            seasonAndDuration: "Summer 2021 - 6 days",
-            textColor: Colors.white,
-            backgroundImageName: "images/Luksemburg.jpg",
-            seasonImage: "images/icons/summer_icon.png",
-            peopleImages: ["images/peoples/girl2.jpg", "images/peoples/man2.jpg"],
-          ),
-          TripElement(
-            name: "London",
-            seasonAndDuration: "Autumn 2020 - 12 days",
-            textColor: Colors.white,
-            backgroundImageName: "images/London.jpg",
-            seasonImage: "images/icons/autumn_icon.png",
-            peopleImages: ["images/peoples/girl1.jpg"],
-          ),
-          TripElement(
-            name: "Scotland",
-            seasonAndDuration: "Winter 2019 - 10 days",
-            textColor: Colors.white,
-            backgroundImageName: "images/Scotland.jpg",
-            seasonImage: "images/icons/winter_icon.png",
-            peopleImages: ["images/peoples/man3.jpg"],
-          ),
-          TripElement(
-            name: "Redwood",
-            seasonAndDuration: "Spring 2020 - 3 days",
-            textColor: Colors.white,
-            backgroundImageName: "images/Redwood.jpg",
-            seasonImage: "images/icons/spring_icon.png",
-            peopleImages: ["images/peoples/man1.jpg"],
-          )
-        ],
-      ),*/
+      child: fillList(itemCount)
     );
   }
 }

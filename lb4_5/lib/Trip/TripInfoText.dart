@@ -2,16 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import 'Trip.dart';
+
 class TripInfoText extends StatelessWidget {
-  final String slogan;
-  final String description;
+
+  final Trip trip;
 
   const TripInfoText(
       {
         Key key,
-        this.slogan,
-        this.description,
+        this.trip
       } ) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +23,7 @@ class TripInfoText extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
-            slogan,
+            trip.slogan,
             style: TextStyle(
                 fontSize: 20,
                 color: Colors.black,
@@ -30,7 +32,7 @@ class TripInfoText extends StatelessWidget {
             ),
           ),
           Text(
-            description,
+            trip.description,
             style: TextStyle(
                 fontSize: 20,
                 color: Colors.grey,

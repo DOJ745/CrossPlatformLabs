@@ -2,22 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import 'Trip.dart';
+
 class TripInfoCard extends StatelessWidget {
 
-  final String name;
-  final String seasonAndDuration;
-  final Color textColor;
-  final String backgroundImageName;
-  final String seasonImage;
+  final Trip trip;
 
   const TripInfoCard(
       {
         Key key,
-        this.name,
-        this.textColor,
-        this.seasonAndDuration,
-        this.backgroundImageName,
-        this.seasonImage,
+        this.trip
       } ) : super(key: key);
 
   @override
@@ -47,7 +41,7 @@ class TripInfoCard extends StatelessWidget {
               ),
               color: Colors.deepOrangeAccent,
               image: DecorationImage(
-                  image: AssetImage(backgroundImageName),
+                  image: AssetImage(trip.backgroundImageName),
                   fit: BoxFit.fitHeight
               ),
             ),
@@ -55,18 +49,18 @@ class TripInfoCard extends StatelessWidget {
           Positioned(
             top: 225,
             left: 35,
-            child: Image.asset(seasonImage),
+            child: Image.asset(trip.seasonImage),
           ),
           Positioned(
             top: 325,
             left: 35,
             child:
             Text(
-              name,
+              trip.name,
               textDirection: TextDirection.ltr,
               style: TextStyle(
                   fontSize: 40,
-                  color: textColor,
+                  color: trip.textColor,
                   fontFamily: 'Assistant',
                   fontWeight: FontWeight.bold
               ),
@@ -77,7 +71,7 @@ class TripInfoCard extends StatelessWidget {
             top: 375,
             left: 35,
             child: Text(
-              seasonAndDuration,
+              trip.seasonAndDuration,
               textDirection: TextDirection.ltr,
               style: TextStyle(
                   fontSize: 20,

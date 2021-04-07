@@ -50,7 +50,7 @@ class MainPage extends StatelessWidget{
                     ),
                   ),
                   TripList(
-                    tripCollection: testTrip.createDefaultCollection(),
+                    tripCollection: Trip.createDefaultCollection(),
                   ),
                ]
            ),

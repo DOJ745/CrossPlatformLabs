@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'Trip.dart';
+import 'TripInfoSummary.dart';
 
 class TripElement extends StatelessWidget {
-
+  
   final Trip trip;
+  final VoidCallback onTap;
 
-  const TripElement(
+  TripElement(
       {
         Key key,
-        this.trip
+        this.trip,
+        this.onTap,
       } ) : super(key: key);
 
   Stack peoplesAccounts() {
@@ -77,7 +80,92 @@ class TripElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return FlatButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      TripInfoSummary(
+                          trip: trip,
+                      ),
+              ),
+          );
+        },
+        child:
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.45),
+                spreadRadius: 1,
+                blurRadius: 1,
+                offset: Offset(0, 8),
+              ),
+            ],
+          ),
+          margin: EdgeInsets.only(bottom: 25),
+          child: Stack(
+            alignment: AlignmentDirectional.topStart,
+            children: <Widget>[
+              Container(
+                width: 500,
+                height: 255,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(trip.backgroundImageName,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 55,
+                left: 35,
+                child: Image.asset(trip.seasonImage),
+              ),
+              Positioned(
+                top: 145,
+                left: 35,
+                child:
+                Text(
+                  trip.name,
+                  textDirection: TextDirection.ltr,
+                  style: TextStyle(
+                      fontSize: 40,
+                      color: trip.textColor,
+                      fontFamily: 'Assistant',
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              Positioned(
+                top: 195,
+                left: 35,
+                child:
+                Text(
+                  trip.seasonAndDuration,
+                  textDirection: TextDirection.ltr,
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontFamily: 'Assistant'),
+                ),
+              ),
+              Positioned(
+                right: 0,
+                top: 180,
+                child: Container(
+                  width: 120,
+                  height: 70,
+                  child: peoplesAccounts(),
+                ),
+              ),
+            ],
+          ),
+        )
+    );
+    /*return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
@@ -147,6 +235,6 @@ class TripElement extends StatelessWidget {
           ),
         ],
       ),
-    );
+    );*/
   }
 }

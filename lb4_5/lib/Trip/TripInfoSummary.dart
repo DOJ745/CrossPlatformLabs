@@ -4,9 +4,15 @@ import 'package:lb4_5/Trip/Trip.dart';
 import 'package:lb4_5/Trip/TripInfoText.dart';
 import '../Trip/TripInfoCard.dart';
 
-class InfoPage extends StatelessWidget{
+class TripInfoSummary extends StatelessWidget{
 
-  Trip testTrip = new Trip();
+  final Trip trip;
+
+  const TripInfoSummary(
+      {
+        Key key,
+        this.trip,
+      } ) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +21,16 @@ class InfoPage extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
-          child: Column(
-            children: <Widget>[
-              TripInfoCard(
-                trip: Trip.createDefaultCollection().elementAt(0),
-              ),
-              TripInfoText(
-                trip: Trip.createDefaultCollection().elementAt(0),
-              )
-            ],
-          )
+            child: Column(
+              children: <Widget>[
+                TripInfoCard(
+                  trip: trip
+                ),
+                TripInfoText(
+                  trip: trip
+                )
+              ],
+            )
         ),
       ),
     );

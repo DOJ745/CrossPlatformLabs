@@ -24,7 +24,7 @@ class Trip {
       }
   );
 
-  List<Trip> createDefaultCollection(){
+  static List<Trip> createDefaultCollection(){
     List<Trip> defCollection = <Trip>[
       Trip(
         slogan: "Luksemburg - good place to take new friends with you",

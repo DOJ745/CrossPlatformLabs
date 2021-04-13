@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
 }
 
 class PageViewerWidget extends StatelessWidget {
+
   const PageViewerWidget({Key key}) : super(key: key);
 
   @override

@@ -6,10 +6,11 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'LB6',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -32,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   static const platform = const MethodChannel('samples.flutter.dev/battery');
-  // Get battery level.
+
   String _batteryLevel = 'Unknown';
 
   Future<void> _getBatteryLevel() async {

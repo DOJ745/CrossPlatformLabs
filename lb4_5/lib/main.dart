@@ -33,8 +33,21 @@ class PageViewerWidget extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       controller: controller,
       children: <Widget>[
-        Center(child: MainPage()),
-        Center(child: InfoPage()),
+        Center(
+            child: MainPage()
+        ),
+        Center(
+            child: InfoPage()
+        ),
+        Center(
+            child:
+            Text(
+              "Page view element",
+              style: TextStyle(
+                color: Colors.black
+              ),
+            ),
+        ),
       ],
     );
   }

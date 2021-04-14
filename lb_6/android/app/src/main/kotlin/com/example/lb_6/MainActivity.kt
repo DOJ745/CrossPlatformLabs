@@ -1,6 +1,5 @@
 package com.example.lb_6
 
-import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.content.IntentFilter
@@ -23,7 +22,6 @@ class MainActivity: FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
             call, result ->
             MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
-                // Note: this method is invoked on the main thread.
                 call, result ->
                 if (call.method == "getBatteryLevel") {
                     val batteryLevel = getBatteryLevel()
@@ -41,18 +39,17 @@ class MainActivity: FlutterActivity() {
     }
 
     private fun getBatteryLevel(): Int {
-        val batteryLevel: Int
-        if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-            val batteryManager = getSystemService(Context.BATTERY_SERVICE) as BatteryManager
-            batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
-        } else {
+
+        return if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+            val batteryManager = getSystemService(BATTERY_SERVICE) as BatteryManager
+            batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+        }
+        else {
             val intent = ContextWrapper(applicationContext).
             registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
-            batteryLevel = intent!!.
-            getIntExtra(BatteryManager.EXTRA_LEVEL, -1) * 100 / intent.getIntExtra(
+            intent!!.
+            getIntExtra(BatteryManager.EXTRA_LEVEL, -1) * 100 / this.intent.getIntExtra(
                     BatteryManager.EXTRA_SCALE, -1)
         }
-
-        return batteryLevel
     }
 }

@@ -1,29 +1,8 @@
-abstract class Genre {
-  void showGenre();
-}
+class DeepHouseTrack {
 
-class DeepHouse implements Genre {
-  @override
-  void showGenre() {
-    print("Deep House");
-  }
-}
-
-class DeepHouseTrack extends DeepHouse {
-
+  int id;
   String lengthInMinutes;
   String name;
-
-  static double cost;
-  static String releaseDate;
-
-  static set setCost(double value) => cost = value;
-
-  double get getCost => cost;
-
-  set setDate(String release) => releaseDate = release;
-
-  String get getReleaseDate => releaseDate;
 
   DeepHouseTrack(this.name, this.lengthInMinutes);
 
@@ -35,19 +14,14 @@ class DeepHouseTrack extends DeepHouse {
       : lengthInMinutes = "4:20",
         name = _name;
 
-  void summaryInfo() {
-    print("Name --- $name\n" +
-        "Length --- $lengthInMinutes\n");
+  void showGenre() {
+    print("Deep House");
   }
 
-  DeepHouseTrack.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
-        lengthInMinutes = json['lengthInMinutes'];
-
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'lengthInMinutes': lengthInMinutes,
-    };
+  @override
+  String toString() {
+    return 'DeepHouse {Id: $id, '
+        'LengthInMinutes: $lengthInMinutes, '
+        'Name: $name}';
   }
 }

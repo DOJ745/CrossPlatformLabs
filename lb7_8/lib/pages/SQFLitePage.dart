@@ -6,6 +6,7 @@ import 'package:lb7_8/model/DeepHouse.dart';
 class SQFLitePage extends StatelessWidget {
 
   final DeepHouseTrack track;
+  final _queryResultController = TextEditingController();
 
   SQFLitePage(
       {
@@ -117,6 +118,15 @@ class SQFLitePage extends StatelessWidget {
             onPressed:() {
 
             }
+        ),
+        TextField(
+          controller: _queryResultController,
+          style: TextStyle(fontSize: 22),
+          enabled: false,
+          maxLines: 6,
+          decoration: InputDecoration(
+            hintText: 'Query result',
+          ),
         ),
       ],
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lb7_8/model/DeepHouse.dart';
+import 'package:lb7_8/model/DeepHouseTrack.dart';
 
 class SQFLitePage extends StatelessWidget {
 

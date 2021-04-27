@@ -1,10 +1,26 @@
+/*Client clientFromJson(String str) {
+  final jsonData = json.decode(str);
+  return Client.fromMap(jsonData);
+}
+
+String clientToJson(Client data) {
+  final dyn = data.toMap();
+  return json.encode(dyn);
+}*/
+
 class DeepHouseTrack {
 
   int id;
   String lengthInMinutes;
   String name;
 
-  DeepHouseTrack(this.id, this.name, this.lengthInMinutes);
+  //DeepHouseTrack(this.id, this.name, this.lengthInMinutes);
+
+  DeepHouseTrack({
+    this.id,
+    this.name,
+    this.lengthInMinutes
+  });
 
   DeepHouseTrack.nonamed()
       : lengthInMinutes = "none",
@@ -17,6 +33,12 @@ class DeepHouseTrack {
   void showGenre() {
     print("Deep House");
   }
+
+  factory DeepHouseTrack.fromMap(Map<String, dynamic> json) => new DeepHouseTrack(
+    id: json["id"],
+    name: json["name"],
+    lengthInMinutes: json["length_in_minutes"],
+  );
 
   Map<String, dynamic> toMap() {
     return {

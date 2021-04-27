@@ -4,7 +4,7 @@ class DeepHouseTrack {
   String lengthInMinutes;
   String name;
 
-  DeepHouseTrack(this.name, this.lengthInMinutes);
+  DeepHouseTrack(this.id, this.name, this.lengthInMinutes);
 
   DeepHouseTrack.nonamed()
       : lengthInMinutes = "none",
@@ -16,6 +16,14 @@ class DeepHouseTrack {
 
   void showGenre() {
     print("Deep House");
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'length_in_minutes': lengthInMinutes,
+    };
   }
 
   @override

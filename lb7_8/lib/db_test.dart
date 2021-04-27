@@ -9,8 +9,10 @@ void main() async {
   // Avoid errors caused by flutter upgrade.
   // Importing 'package:flutter/widgets.dart' is required.
   WidgetsFlutterBinding.ensureInitialized();
+
   // Open the database and store the reference.
   final Future<Database> database = openDatabase(
+
     // Set the path to the database. Note: Using the `join` function from the
     // `path` package is best practice to ensure the path is correctly
     // constructed for each platform.
@@ -96,6 +98,7 @@ void main() async {
   await insertDog(fido);
 
   // Print the list of dogs (only Fido for now).
+  print("--- INSERT fido result ---\n");
   print(await dogs());
 
   // Update Fido's age and save it to the database.
@@ -107,12 +110,14 @@ void main() async {
   await updateDog(fido);
 
   // Print Fido's updated information.
+  print("--- UPDATE fido result ---\n");
   print(await dogs());
 
   // Delete Fido from the database.
   await deleteDog(fido.id);
 
   // Print the list of dogs (empty).
+  print("--- DELETE fido result ---\n");
   print(await dogs());
 }
 

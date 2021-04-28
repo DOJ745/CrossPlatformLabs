@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lb7_8/model/DeepHouseTrack.dart';
 import 'package:lb7_8/pages/SQFLitePage.dart';
 import 'package:lb7_8/pages/SharedPreferPage.dart';
@@ -78,7 +79,117 @@ class _SQLPageState extends State<MyHomePage> {
           future: DBProvider.db.getAllTracks(),
           builder: (BuildContext context, AsyncSnapshot<List<DeepHouseTrack>> snapshot) {
             if (snapshot.hasData) {
-              return ListView.builder(
+              return Column(
+                children: <Widget>[
+                  ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      DeepHouseTrack item = snapshot.data[index];
+                      return Dismissible(
+                        key: UniqueKey(),
+                        background: Container(color: Colors.red),
+                        onDismissed: (direction) {
+                          DBProvider.db.deleteTrack(item.id);
+                        },
+                        child: ListTile(
+                          title: Text("Track Name: " + item.name),
+                          subtitle: Text(item.lengthInMinutes),
+                          leading: Text("ID: " + item.id.toString()),
+                        ),
+                      );
+                    },
+                  ),
+                  Text(
+                    "ID",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 22
+                    ),
+                  ),
+                  /*TextFormField(
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(RegExp("\\d")),
+                    ],
+                    validator: (value) {
+                      if(value.isEmpty){
+                        return "Enter the id!";
+                      }
+                      return null;
+                    },
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.black,
+                    ),
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                        hintText: "Numbers like 1, 2, 3...",
+                        labelText: "Enter id"
+                    ),
+                  ),
+                  Text(
+                    "Name of track",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 22
+                    ),
+                  ),
+                  TextFormField(
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(RegExp("[\\w]")),
+                    ],
+                    validator: (value) {
+                      if(value.isEmpty){
+                        return "Enter the name of track!";
+                      }
+                      return null;
+                    },
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.black,
+                    ),
+                    maxLines: 1,
+                    maxLength: 50,
+                    decoration: InputDecoration(
+                        hintText: "Any character symbol",
+                        labelText: "Enter name"
+                    ),
+                  ),
+                  Text(
+                    "Length in minutes",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 22
+                    ),
+                  ),
+                  TextFormField(
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(RegExp("[\\d{1,3}:{1}\\d{2}]")),
+                    ],
+                    validator: (value) {
+                      if(value.isEmpty){
+                        return "Enter the length!";
+                      }
+                      return null;
+                    },
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.black,
+                    ),
+                    maxLines: 1,
+                    maxLength: 6,
+                    decoration: InputDecoration(
+                        hintText: "Use standard like 'minutes:seconds'",
+                        labelText: "Enter length (minutes:seconds)"
+                    ),
+                  ),
+                  ElevatedButton(
+                      child: Text("Insert Track", style: TextStyle(fontSize: 22)),
+                      onPressed:() {
+
+                      }
+                  ),*/
+                ]
+              );ListView.builder(
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   DeepHouseTrack item = snapshot.data[index];
@@ -89,7 +200,7 @@ class _SQLPageState extends State<MyHomePage> {
                       DBProvider.db.deleteTrack(item.id);
                     },
                     child: ListTile(
-                      title: Text("Name: " + item.name),
+                      title: Text("Track Name: " + item.name),
                       subtitle: Text(item.lengthInMinutes),
                       leading: Text("ID: " + item.id.toString()),
                     ),
@@ -115,6 +226,7 @@ class _SQLPageState extends State<MyHomePage> {
   }
 }
 
+/*
 class MyApp extends StatelessWidget {
 
   List<DeepHouseTrack> testTracks = [
@@ -167,7 +279,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-/*
+
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
 

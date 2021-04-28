@@ -7,11 +7,11 @@ import 'package:sqflite/sqflite.dart';
 import 'dart:math';
 import 'package:path/path.dart';
 
-import 'db/Database.dart';
+import 'db/DBProvider.dart';
 
 void main() async {
 
-  WidgetsFlutterBinding.ensureInitialized();
+  /*WidgetsFlutterBinding.ensureInitialized();
 
   final Future<Database> database = openDatabase(
       join(await getDatabasesPath(), 'doggie_database.db'),
@@ -23,11 +23,97 @@ void main() async {
               "lengthInMinutes TEXT)",
         );
         },
-    version: 1, );
+    version: 1, );*/
 
-  runApp(MyApp());
+  //DBProvider.db.initDB();
+  runApp(SQFTest());
 }
 
+class SQFTest extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      //title: 'Flutter Hash',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: MyHomePage(title: 'LB7_8'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+
+  final String title;
+
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  @override
+  _SQLPageState createState() => _SQLPageState();
+}
+
+class _SQLPageState extends State<MyHomePage> {
+
+  List<DeepHouseTrack> testTracks = [
+    DeepHouseTrack(id: 1, name: "Blow up", lengthInMinutes: "3:15"),
+    DeepHouseTrack(id: 2, name: "New one", lengthInMinutes: "2:59"),
+    DeepHouseTrack(id: 3, name: "Monke again", lengthInMinutes: "3:13"),
+    DeepHouseTrack(id: 4, name: "1,2,3,4,5", lengthInMinutes: "4:06"),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+          visualDensity: VisualDensity.adaptivePlatformDensity
+      ),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+            title: Text(widget.title)
+        ),
+        body: FutureBuilder<List<DeepHouseTrack>>(
+          future: DBProvider.db.getAllTracks(),
+          builder: (BuildContext context, AsyncSnapshot<List<DeepHouseTrack>> snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  DeepHouseTrack item = snapshot.data[index];
+                  return Dismissible(
+                    key: UniqueKey(),
+                    background: Container(color: Colors.red),
+                    onDismissed: (direction) {
+                      DBProvider.db.deleteTrack(item.id);
+                    },
+                    child: ListTile(
+                      title: Text("Name: " + item.name),
+                      subtitle: Text(item.lengthInMinutes),
+                      leading: Text("ID: " + item.id.toString()),
+                    ),
+                  );
+                },
+              );
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () async {
+            var random = new Random();
+            DeepHouseTrack rnd = new DeepHouseTrack(id: random.nextInt(100), name:
+            "test", lengthInMinutes: "3:00");
+            await DBProvider.db.newTrack(rnd);
+          },
+        ),
+      ),
+    );
+  }
+}
 
 class MyApp extends StatelessWidget {
 
@@ -58,6 +144,7 @@ class MyApp extends StatelessWidget {
                   DeepHouseTrack item = snapshot.data[index];
                   return ListTile(
                     title: Text(item.name),
+                    subtitle: Text(item.lengthInMinutes),
                     leading: Text(item.id.toString()),
                   );
                 },
@@ -70,7 +157,8 @@ class MyApp extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () async {
-            DeepHouseTrack rnd = testTracks[Random().nextInt(testTracks.length)];
+            DeepHouseTrack rnd = new DeepHouseTrack(id: 1, name:
+                "test", lengthInMinutes: "3:00");
             await DBProvider.db.newTrack(rnd);
           },
         ),
@@ -78,6 +166,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 /*
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);

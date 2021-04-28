@@ -21,9 +21,10 @@ class DBProvider {
     return _database;
   }
 
-  initDB() async {
+  Future<Database> initDB() async {
+
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, "TestDB.db");
+    String path = join(documentsDirectory.path, "TestDB2.db");
 
     return await openDatabase(path, version: 1, onOpen: (db) {
     }, onCreate: (Database db, int version) async {
@@ -31,7 +32,7 @@ class DBProvider {
         "CREATE TABLE Track("
           "id INTEGER PRIMARY KEY, "
           "name TEXT, "
-          "lengthInMinutes TEXT)",
+          "length_in_minutes TEXT)",
       );
     });
   }
@@ -48,7 +49,7 @@ class DBProvider {
     return res.isNotEmpty ? DeepHouseTrack.fromMap(res.first) : Null ;
   }
 
-  getAllTracks() async {
+  Future<List<DeepHouseTrack>> getAllTracks() async {
     final db = await database;
     var res = await db.query("Track");
     List<DeepHouseTrack> list =
@@ -63,7 +64,7 @@ class DBProvider {
     return res;
   }
 
-  deleteClient(int id) async {
+  deleteTrack(int id) async {
     final db = await database;
     db.delete("Track", where: "id = ?", whereArgs: [id]);
   }

@@ -58,6 +58,12 @@ class MyHomePage extends StatefulWidget {
 
 class _SQLPageState extends State<MyHomePage> {
 
+  TextEditingController idController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController lengthInMinutesController = TextEditingController();
+
+  DeepHouseTrack trackForUpdate;
+
   List<DeepHouseTrack> testTracks = [
     DeepHouseTrack(id: 1, name: "Blow up", lengthInMinutes: "3:15"),
     DeepHouseTrack(id: 2, name: "New one", lengthInMinutes: "2:59"),
@@ -117,6 +123,7 @@ class _SQLPageState extends State<MyHomePage> {
                           ),
                         ),
                         TextFormField(
+                          controller: idController,
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.allow(RegExp("\\d")),
                           ],
@@ -144,6 +151,7 @@ class _SQLPageState extends State<MyHomePage> {
                           ),
                         ),
                         TextFormField(
+                          controller: nameController,
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.allow(RegExp("[\\w]")),
                           ],
@@ -172,6 +180,7 @@ class _SQLPageState extends State<MyHomePage> {
                           ),
                         ),
                         TextFormField(
+                          controller: lengthInMinutesController,
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.allow(RegExp("[\\d{1,3}:{1}\\d{2}]")),
                           ],
@@ -194,7 +203,16 @@ class _SQLPageState extends State<MyHomePage> {
                         ),
                         ElevatedButton(
                             child: Text("Update Track", style: TextStyle(fontSize: 22)),
-                            onPressed:() {}
+                            onPressed:() async {
+
+                              DBProvider.db.getTrack(int.parse(idController.text)).then((value) {
+                                setState(() {this.trackForUpdate = value;});
+                              });
+
+                              this.trackForUpdate.name = nameController.text;
+                              this.trackForUpdate.lengthInMinutes = lengthInMinutesController.text;
+                              DBProvider.db.updateTrack(this.trackForUpdate);
+                            }
                             ),
                       ]
                   ),
@@ -209,8 +227,9 @@ class _SQLPageState extends State<MyHomePage> {
           child: Icon(Icons.add),
           onPressed: () async {
             var random = new Random();
-            DeepHouseTrack rnd = new DeepHouseTrack(id: random.nextInt(100), name:
-            "test", lengthInMinutes: "3:00");
+            DeepHouseTrack rnd = new DeepHouseTrack(
+                id: random.nextInt(100), name: "test", lengthInMinutes: "3:00"
+            );
             await DBProvider.db.newTrack(rnd);
           },
         ),
@@ -218,25 +237,3 @@ class _SQLPageState extends State<MyHomePage> {
     );
   }
 }
-
-
-/*
-ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context, int index) {
-                  DeepHouseTrack item = snapshot.data[index];
-                  return Dismissible(
-                    key: UniqueKey(),
-                    background: Container(color: Colors.red),
-                    onDismissed: (direction) {
-                      DBProvider.db.deleteTrack(item.id);
-                    },
-                    child: ListTile(
-                      title: Text("Track Name: " + item.name),
-                      subtitle: Text(item.lengthInMinutes),
-                      leading: Text("ID: " + item.id.toString()),
-                    ),
-                  );
-                },
-              );
-* */

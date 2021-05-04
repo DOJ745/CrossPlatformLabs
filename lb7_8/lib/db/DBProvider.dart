@@ -43,10 +43,11 @@ class DBProvider {
     return res;
   }
 
-  getTrack(int id) async {
+  Future<DeepHouseTrack> getTrack(int id) async {
     final db = await database;
     var res = await  db.query("Track", where: "id = ?", whereArgs: [id]);
-    return res.isNotEmpty ? DeepHouseTrack.fromMap(res.first) : Null ;
+    DeepHouseTrack someTrack = res.isNotEmpty ? DeepHouseTrack.fromMap(res.first) : Null ;
+    return someTrack;
   }
 
   Future<List<DeepHouseTrack>> getAllTracks() async {

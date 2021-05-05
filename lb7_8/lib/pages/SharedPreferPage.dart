@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lb7_8/pages/input_fields/SPFields.dart';
 import 'package:lb7_8/shared_pref/SharedPreferencesMethods.dart';
 
 class SharedPreferPage extends StatelessWidget {
@@ -54,67 +55,9 @@ class _SFPageState extends State<MySFPage> {
               child: Column(
                 children: <Widget>[
 
-                  Text(
-                    "Key",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 22
-                    ),
+                  SPFields(
+                    keyController: keyController,
                   ),
-                  TextFormField(
-                    controller: keyController,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.allow(RegExp("\\w")),
-                    ],
-                    validator: (value) {
-                      if(value.isEmpty){
-                        return "Enter the key!";
-                      }
-                      return null;
-                    },
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.black,
-                    ),
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                        hintText: "Input any string",
-                        labelText: "Enter key"
-                    ),
-                  ),
-
-                  Text(
-                    "String value",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 22
-                    ),
-                  ),
-
-                  Text(
-                    "Int value",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 22
-                    ),
-                  ),
-
-                  Text(
-                    "Double value",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 22
-                    ),
-                  ),
-
-                  Text(
-                    "Bool value",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 22
-                    ),
-                  ),
-
                   DropdownButton<String>(
                     hint: Text("Select bool value"),
                     onChanged: (String value) {

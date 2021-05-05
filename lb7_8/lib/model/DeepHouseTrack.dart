@@ -14,8 +14,6 @@ class DeepHouseTrack {
   String lengthInMinutes;
   String name;
 
-  //DeepHouseTrack(this.id, this.name, this.lengthInMinutes);
-
   DeepHouseTrack({
     this.id,
     this.name,

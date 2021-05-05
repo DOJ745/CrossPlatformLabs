@@ -15,22 +15,22 @@ class SQFLitePage extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'LB7_8'),
+      home: MySQLPage(title: 'LB7_8(SQL)'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MySQLPage extends StatefulWidget {
 
   final String title;
 
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MySQLPage({Key key, this.title}) : super(key: key);
 
   @override
   _SQLPageState createState() => _SQLPageState();
 }
 
-class _SQLPageState extends State<MyHomePage> {
+class _SQLPageState extends State<MySQLPage> {
 
   TextEditingController idController = TextEditingController();
   TextEditingController nameController = TextEditingController();

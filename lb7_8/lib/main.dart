@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:lb7_8/model/DeepHouseTrack.dart';
 import 'package:lb7_8/pages/SQFLitePage.dart';
 import 'package:lb7_8/pages/SharedPreferPage.dart';
-
-import 'dart:math';
-
-import 'db/DBProvider.dart';
 
 void main() {
   runApp(MyApp());

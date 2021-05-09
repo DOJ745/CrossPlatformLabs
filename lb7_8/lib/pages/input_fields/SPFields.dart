@@ -58,12 +58,42 @@ class SPFields extends StatelessWidget {
                 fontSize: 22
             ),
           ),
+          TextFormField(
+            controller: strController,
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.allow(RegExp("\\w")),
+            ],
+            style: TextStyle(
+              fontSize: 22,
+              color: Colors.black,
+            ),
+            maxLines: 1,
+            decoration: InputDecoration(
+                hintText: "Input any string",
+                labelText: "Enter string"
+            ),
+          ),
 
           Text(
             "Int value",
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 22
+            ),
+          ),
+          TextFormField(
+            controller: intController,
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.allow(RegExp("\\d")),
+            ],
+            style: TextStyle(
+              fontSize: 22,
+              color: Colors.black,
+            ),
+            maxLines: 1,
+            decoration: InputDecoration(
+                hintText: "Input any number",
+                labelText: "Enter integer"
             ),
           ),
 
@@ -74,12 +104,19 @@ class SPFields extends StatelessWidget {
                 fontSize: 22
             ),
           ),
-
-          Text(
-            "Bool value",
+          TextFormField(
+            controller: doubleController,
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.allow(RegExp("[\\d\\.{1}]")),
+            ],
             style: TextStyle(
-                color: Colors.black,
-                fontSize: 22
+              fontSize: 22,
+              color: Colors.black,
+            ),
+            maxLines: 1,
+            decoration: InputDecoration(
+                hintText: "Input any double (123.456)",
+                labelText: "Enter double"
             ),
           ),
         ]

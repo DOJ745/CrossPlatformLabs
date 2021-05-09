@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lb7_8/pages/input_fields/SPFields.dart';
 import 'package:lb7_8/shared_pref/SharedPreferencesMethods.dart';
 
@@ -36,6 +37,7 @@ class _SFPageState extends State<MySFPage> {
   TextEditingController intController = TextEditingController();
   TextEditingController strController = TextEditingController();
   TextEditingController doubleController = TextEditingController();
+  TextEditingController outputController = TextEditingController();
 
   bool selectedBool;
 
@@ -54,33 +56,64 @@ class _SFPageState extends State<MySFPage> {
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-
                   SPFields(
                     keyController: keyController,
+                    intController: intController,
+                    strController: strController,
+                    doubleController: doubleController
                   ),
-                  DropdownButton<String>(
-                    hint: Text("Select bool value"),
-                    onChanged: (String value) {
-                      setState(() {
-                        if(value == "true")
-                          selectedBool = true;
-                        else
-                          selectedBool = false;
-                      });
+                  ElevatedButton(
+                      child: Text("Set value", style: TextStyle(fontSize: 22)),
+                      onPressed:() async {
+
+                        if(intController.text != ""){
+                          sfMethods.addIntToSF(keyController.text, int.parse(intController.text));
+                          outputController.text = keyController.text + " ---- " + intController.text;
+                        }
+                        if(strController.text != ""){
+                          sfMethods.addStringToSF(keyController.text, strController.text);
+                          outputController.text = keyController.text + " ---- " + strController.text;
+                        }
+                        if(doubleController.text != ""){
+                          sfMethods.addDoubleToSF(keyController.text, double.parse(doubleController.text));
+                          outputController.text = keyController.text + " ---- " + doubleController.text;
+                        }
+                        else{
+                        }
+                      }
+                  ),
+                  ElevatedButton(
+                    child: Text("Delete value", style: TextStyle(fontSize: 22)),
+                    onPressed:() async {
+                      if(keyController.text != ""){
+                        sfMethods.removeValue(keyController.text).then((value) =>
+                        outputController.text = "Value with key --" + keyController.text + "-- delete status - " +
+                            value.toString()
+                        );
+                      }
                     },
-                    items: <String>['true', 'false'].map((String value) {
-                      return new DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 22
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  )
+                  ),
+                  ElevatedButton(
+                    child: Text("Check value", style: TextStyle(fontSize: 22)),
+                    onPressed:() async {
+                      if(keyController.text != ""){
+                        sfMethods.checkValue(keyController.text).then((value) =>
+                        outputController.text = "Value with key --" + keyController.text + "-- exists?\n" +
+                            value.toString()
+                        );
+                      }
+                    },
+                  ),
+                  Divider(
+                    thickness: 4,
+                  ),
+                  TextField(
+                      controller: outputController,
+                      style: TextStyle(fontSize: 22, color: Colors.black),
+                      enabled: false,
+                      maxLines: 10,
+                      minLines: 5
+                  ),
                 ],
               ),
             ),

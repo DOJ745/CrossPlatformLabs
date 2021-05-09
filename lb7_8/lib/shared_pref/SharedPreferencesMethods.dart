@@ -43,8 +43,13 @@ class SharedPreferencesMethods {
     return boolValue;
   }
 
-  removeValue(String key) async {
+  Future <bool> checkValue(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove(key);
+    return prefs.containsKey(key);
+  }
+
+  Future<bool> removeValue(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.remove(key);
   }
 }

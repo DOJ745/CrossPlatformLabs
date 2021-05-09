@@ -12,9 +12,22 @@ class FileMethods {
     final directoryCache = await getExternalCacheDirectories();
     return directoryCache.first.path;
   }
-  Future<String> get _libraryPath async {
-    final directoryLibrary = await getLibraryDirectory();
-    return directoryLibrary.path;
+  Future<String> get _externalPath async {
+    final directoryExternal = await getExternalStorageDirectory();
+    return directoryExternal.path;
+  }
+
+  Future<String> getDefaultPath() async {
+    final directoryDocuments = await getApplicationDocumentsDirectory();
+    return directoryDocuments.path;
+  }
+  Future<String> getCachePath() async {
+    final directoryCache = await getExternalCacheDirectories();
+    return directoryCache.first.path;
+  }
+  Future<String> getExternalPath() async {
+    final directoryExternal = await getExternalStorageDirectory();
+    return directoryExternal.path;
   }
 
   Future<File> get _localFile async {
@@ -29,7 +42,7 @@ class FileMethods {
       String contents = await file.readAsString();
       return int.parse(contents);
     }
-    catch (e) { return 0; }
+    catch (e) { return 1; }
   }
 
   Future<File> writeCounter(int counter) async {

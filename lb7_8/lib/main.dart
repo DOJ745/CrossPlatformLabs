@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lb7_8/pages/FileSystemPage.dart';
 import 'package:lb7_8/pages/SQFLitePage.dart';
 import 'package:lb7_8/pages/SharedPreferPage.dart';
 
@@ -39,13 +40,7 @@ class PageViewerWidget extends StatelessWidget {
             child: SharedPreferPage()
         ),
         Center(
-          child:
-          Text(
-            "Page view element",
-            style: TextStyle(
-                color: Colors.black
-            ),
-          ),
+          child: FileSystemPage()
         ),
       ],
     );

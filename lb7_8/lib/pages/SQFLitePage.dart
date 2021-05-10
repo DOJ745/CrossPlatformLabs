@@ -125,9 +125,7 @@ class _SQLPageState extends State<MySQLPage> {
             DeepHouseTrack rnd = new DeepHouseTrack(
                 id: random.nextInt(100), name: "test", lengthInMinutes: "3:00"
             );
-            setState(() {
-              DBProvider.db.newTrack(rnd);
-            });
+            setState(() {DBProvider.db.newTrack(rnd);});
           },
         ),
       ),

@@ -37,26 +37,59 @@ class MyFileSysPage extends StatefulWidget {
 
 class _FileSysPageState extends State<MyFileSysPage> {
 
-  String _counterDef;
-  String _counterCache;
-  String _counterExternal;
-  String currentStorage = "temp";
+  String _counterDef = "1D";
+  String _counterCache = "1C";
+  String _counterExternal = "1E";
+
+  String cachePath;
+  String externalPath;
+
   TextEditingController outputController = TextEditingController();
 
   @override
   void initState() {
+
     super.initState();
+
+    widget.storage.writeDefCounter(_counterDef);
+    widget.storage.writeCacheCounter(_counterCache);
+    widget.storage.writeExternalCounter(_counterExternal);
+
     widget.storage.readDefCounter().then((String value) {
-      setState( () {
-        _counterDef = value;
-      } );
+      setState(() { _counterDef = value; });
     });
-    widget.storage.
+
+    widget.storage.readCacheCounter().then((String value) {
+      setState(() { _counterCache = value;} );
+    });
+
+    widget.storage.readExternalCounter().then((String value) {
+      setState(() { _counterExternal = value;} );
+    });
   }
 
-  Future<File> _incrementCounter() {
-    setState(() {_counter += "_1";});
-    return widget.storage.writeDefCounter(_counter);
+  Future<File> _incrementDefCounter() {
+    setState(() {
+      _counterDef += "_1";
+      outputController.text = _counterDef;
+    });
+    return widget.storage.writeDefCounter(_counterDef);
+  }
+
+  Future<File> _incrementCacheCounter() {
+    setState(() {
+      _counterCache += "_1c";
+      outputController.text = _counterCache;
+    });
+    return widget.storage.writeCacheCounter(_counterCache);
+  }
+
+  Future<File> _incrementExternalCounter() {
+    setState(() {
+      _counterExternal += "_1e";
+      outputController.text = _counterExternal;
+    });
+    return widget.storage.writeExternalCounter(_counterExternal);
   }
 
   @override
@@ -68,17 +101,27 @@ class _FileSysPageState extends State<MyFileSysPage> {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           appBar: AppBar(title: Text(widget.title)),
-          floatingActionButton: FloatingActionButton(
-            onPressed: _incrementCounter,
-            tooltip: 'Increment',
-            child: Icon(Icons.add),
-          ),
           body: Container(
             child: Column(
               children: <Widget>[
-                Text(
-                  'File counter: $_counter\n Current storage: ' + currentStorage,
-                    style: TextStyle(fontSize: 22, color: Colors.black)
+                ElevatedButton(
+                  child: Text("Counter default", style: TextStyle(fontSize: 22)),
+                  onPressed: _incrementDefCounter,
+                ),
+                ElevatedButton(
+                  child: Text("Counter cache", style: TextStyle(fontSize: 22)),
+                  onPressed: _incrementCacheCounter,/*() async {
+                    widget.storage.readCacheCounter().then((String value) => _counterCache = value);
+                    _counterCache += "_1c";
+                    outputController.text = _counterCache;
+                  }*/
+                ),
+                ElevatedButton(
+                  child: Text("Counter external", style: TextStyle(fontSize: 22)),
+                  onPressed: _incrementExternalCounter,
+                ),
+                Divider(
+                  thickness: 4,
                 ),
                 ElevatedButton(
                   child: Text("Get default file path", style: TextStyle(fontSize: 22)),
@@ -91,15 +134,19 @@ class _FileSysPageState extends State<MyFileSysPage> {
                 ElevatedButton(
                     child: Text("Get cache file path", style: TextStyle(fontSize: 22)),
                     onPressed: () async {
-                      widget.storage.getCachePath().then((value) =>
-                      outputController.text = "Current cache path - " + value.toString() + "\n");
+                      widget.storage.getCachePath().then((value) {
+                        cachePath = value.toString();
+                        outputController.text = "Current cache path - " + cachePath + "\n";
+                      });
                     },
                 ),
                 ElevatedButton(
                   child: Text("Get external file path", style: TextStyle(fontSize: 22)),
                   onPressed: () async {
-                    widget.storage.getExternalPath().then((value) =>
-                    outputController.text = "Current external path - " + value.toString() + "\n");
+                    widget.storage.getExternalPath().then((value) {
+                      externalPath = value.toString();
+                      outputController.text = "Current external path - " + externalPath + "\n";
+                    });
                   },
                 ),
                 Divider(

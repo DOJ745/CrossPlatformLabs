@@ -38,6 +38,7 @@ class FileMethods {
     final path = _cachePath;
     return File('$path/counter_cache.txt');
   }
+
   Future<File> get _externalFile async {
     final path = _externalPath;
     return File('$path/counter_external.txt');
@@ -51,9 +52,34 @@ class FileMethods {
     }
     catch (e) { return e.toString(); }
   }
-
   Future<File> writeDefCounter(String counter) async {
     final file = await _localFile;
+    return file.writeAsString('$counter');
+  }
+
+  Future<String> readCacheCounter() async {
+    try {
+      final file = await _cacheFile;
+      String contents = await file.readAsString();
+      return contents + file.path;
+    }
+    catch (e) { return e.toString(); }
+  }
+  Future<File> writeCacheCounter(String counter) async {
+    final file = await _cacheFile;
+    return file.writeAsString('$counter');
+  }
+
+  Future<String> readExternalCounter() async {
+    try {
+      final file = await _externalFile;
+      String contents = await file.readAsString();
+      return contents + file.path;
+    }
+    catch (e) { return e.toString(); }
+  }
+  Future<File> writeExternalCounter(String counter) async {
+    final file = await _externalFile;
     return file.writeAsString('$counter');
   }
 

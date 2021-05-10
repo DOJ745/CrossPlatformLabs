@@ -34,21 +34,27 @@ class FileMethods {
     final path = await _localPath;
     return File('$path/counter.txt');
   }
+  Future<File> get _cacheFile async {
+    final path = _cachePath;
+    return File('$path/counter_cache.txt');
+  }
+  Future<File> get _externalFile async {
+    final path = _externalPath;
+    return File('$path/counter_external.txt');
+  }
 
-  Future<int> readCounter() async {
+  Future<String> readDefCounter() async {
     try {
       final file = await _localFile;
-      // Read the file
       String contents = await file.readAsString();
-      return int.parse(contents);
+      return contents + file.path;
     }
-    catch (e) { return 1; }
+    catch (e) { return e.toString(); }
   }
 
-  Future<File> writeCounter(int counter) async {
+  Future<File> writeDefCounter(String counter) async {
     final file = await _localFile;
-
-    // Write the file
     return file.writeAsString('$counter');
   }
+
 }

@@ -37,21 +37,26 @@ class MyFileSysPage extends StatefulWidget {
 
 class _FileSysPageState extends State<MyFileSysPage> {
 
-  int _counter;
+  String _counterDef;
+  String _counterCache;
+  String _counterExternal;
+  String currentStorage = "temp";
   TextEditingController outputController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    widget.storage.readCounter().then((int value) {
-      setState( () {_counter = value;} );
+    widget.storage.readDefCounter().then((String value) {
+      setState( () {
+        _counterDef = value;
+      } );
     });
+    widget.storage.
   }
 
   Future<File> _incrementCounter() {
-    setState(() {_counter++;});
-    // Write the variable as a string to the file.
-    return widget.storage.writeCounter(_counter);
+    setState(() {_counter += "_1";});
+    return widget.storage.writeDefCounter(_counter);
   }
 
   @override
@@ -72,7 +77,7 @@ class _FileSysPageState extends State<MyFileSysPage> {
             child: Column(
               children: <Widget>[
                 Text(
-                  'Button tapped $_counter time${_counter == 1 ? '' : 's'}.',
+                  'File counter: $_counter\n Current storage: ' + currentStorage,
                     style: TextStyle(fontSize: 22, color: Colors.black)
                 ),
                 ElevatedButton(

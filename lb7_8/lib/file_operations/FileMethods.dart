@@ -35,12 +35,12 @@ class FileMethods {
     return File('$path/counter.txt');
   }
   Future<File> get _cacheFile async {
-    final path = _cachePath;
+    final path = await _cachePath;
     return File('$path/counter_cache.txt');
   }
 
   Future<File> get _externalFile async {
-    final path = _externalPath;
+    final path = await _externalPath;
     return File('$path/counter_external.txt');
   }
 

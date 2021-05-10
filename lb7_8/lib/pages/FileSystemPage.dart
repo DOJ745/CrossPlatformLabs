@@ -14,7 +14,7 @@ class FileSystemPage extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyFileSysPage(title: 'LB7_8(File System)', storage: FileMethods()),
+      home: MyFileSysPage(title: 'LB7_8(File System)'),
     );
   }
 }
@@ -22,13 +22,13 @@ class FileSystemPage extends StatelessWidget {
 class MyFileSysPage extends StatefulWidget {
 
   final String title;
-  final FileMethods storage;
+  //final FileMethods storage;
 
   MyFileSysPage(
       {
         Key key,
         this.title,
-        this.storage
+        //this.storage
       }) : super(key: key);
 
   @override
@@ -37,59 +37,63 @@ class MyFileSysPage extends StatefulWidget {
 
 class _FileSysPageState extends State<MyFileSysPage> {
 
+  FileMethods storage = new FileMethods();
+
   String _counterDef = "1D";
   String _counterCache = "1C";
   String _counterExternal = "1E";
 
+  String defaultPath;
   String cachePath;
   String externalPath;
+
 
   TextEditingController outputController = TextEditingController();
 
   @override
-  void initState() {
+  Future<void> initState() {
 
     super.initState();
 
-    widget.storage.writeDefCounter(_counterDef);
-    widget.storage.writeCacheCounter(_counterCache);
-    widget.storage.writeExternalCounter(_counterExternal);
+    storage.writeDefCounter(_counterDef);
+    storage.writeCacheCounter(_counterCache);
+    storage.writeExternalCounter(_counterExternal);
 
-    widget.storage.readDefCounter().then((String value) {
+    storage.readDefCounter().then((String value) {
       setState(() { _counterDef = value; });
     });
 
-    widget.storage.readCacheCounter().then((String value) {
+    storage.readCacheCounter().then((String value) {
       setState(() { _counterCache = value;} );
     });
 
-    widget.storage.readExternalCounter().then((String value) {
+    storage.readExternalCounter().then((String value) {
       setState(() { _counterExternal = value;} );
     });
   }
 
-  Future<File> _incrementDefCounter() {
+  Future<File> _incrementDefCounter()  {
     setState(() {
       _counterDef += "_1";
       outputController.text = _counterDef;
     });
-    return widget.storage.writeDefCounter(_counterDef);
+    return storage.writeDefCounter(_counterDef);
   }
 
-  Future<File> _incrementCacheCounter() {
+  Future<File> _incrementCacheCounter()  {
     setState(() {
       _counterCache += "_1c";
       outputController.text = _counterCache;
     });
-    return widget.storage.writeCacheCounter(_counterCache);
+    return storage.writeCacheCounter(_counterCache);
   }
 
-  Future<File> _incrementExternalCounter() {
+  Future<File> _incrementExternalCounter()  {
     setState(() {
       _counterExternal += "_1e";
       outputController.text = _counterExternal;
     });
-    return widget.storage.writeExternalCounter(_counterExternal);
+    return storage.writeExternalCounter(_counterExternal);
   }
 
   @override
@@ -104,38 +108,39 @@ class _FileSysPageState extends State<MyFileSysPage> {
           body: Container(
             child: Column(
               children: <Widget>[
+
                 ElevatedButton(
                   child: Text("Counter default", style: TextStyle(fontSize: 22)),
                   onPressed: _incrementDefCounter,
                 ),
+
                 ElevatedButton(
                   child: Text("Counter cache", style: TextStyle(fontSize: 22)),
-                  onPressed: _incrementCacheCounter,/*() async {
-                    widget.storage.readCacheCounter().then((String value) => _counterCache = value);
-                    _counterCache += "_1c";
-                    outputController.text = _counterCache;
-                  }*/
+                  onPressed: _incrementCacheCounter,
                 ),
+
                 ElevatedButton(
                   child: Text("Counter external", style: TextStyle(fontSize: 22)),
                   onPressed: _incrementExternalCounter,
                 ),
+
                 Divider(
                   thickness: 4,
                 ),
                 ElevatedButton(
                   child: Text("Get default file path", style: TextStyle(fontSize: 22)),
                   onPressed:() async {
-                      widget.storage.getDefaultPath().then((value) =>
-                      outputController.text = "Current app path - " + value.toString() + "\n"
-                      );
+                      storage.getDefaultPath().then((String value) {
+                        defaultPath = value;
+                        outputController.text = "Current app path - " + defaultPath  + "\n";
+                      });
                   },
                 ),
                 ElevatedButton(
                     child: Text("Get cache file path", style: TextStyle(fontSize: 22)),
                     onPressed: () async {
-                      widget.storage.getCachePath().then((value) {
-                        cachePath = value.toString();
+                      storage.getCachePath().then((String value) {
+                        cachePath = value;
                         outputController.text = "Current cache path - " + cachePath + "\n";
                       });
                     },
@@ -143,8 +148,8 @@ class _FileSysPageState extends State<MyFileSysPage> {
                 ElevatedButton(
                   child: Text("Get external file path", style: TextStyle(fontSize: 22)),
                   onPressed: () async {
-                    widget.storage.getExternalPath().then((value) {
-                      externalPath = value.toString();
+                    storage.getExternalPath().then((String value) {
+                      externalPath = value;
                       outputController.text = "Current external path - " + externalPath + "\n";
                     });
                   },

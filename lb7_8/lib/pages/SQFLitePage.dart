@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:lb7_8/db/DBProvider.dart';
 import 'package:lb7_8/model/DeepHouseTrack.dart';
 import 'package:lb7_8/pages/input_fields/UpdateSQLFiedls.dart';
@@ -38,13 +37,15 @@ class _SQLPageState extends State<MySQLPage> {
   TextEditingController lengthInMinutesController = TextEditingController();
 
   DeepHouseTrack trackForUpdate;
+  List<DeepHouseTrack> tracks;
 
-  List<DeepHouseTrack> testTracks = [
-    DeepHouseTrack(id: 1, name: "Blow up", lengthInMinutes: "3:15"),
-    DeepHouseTrack(id: 2, name: "New one", lengthInMinutes: "2:59"),
-    DeepHouseTrack(id: 3, name: "Monke again", lengthInMinutes: "3:13"),
-    DeepHouseTrack(id: 4, name: "1,2,3,4,5", lengthInMinutes: "4:06"),
-  ];
+  /*@override
+  void initState() {
+    super.initState();
+    DBProvider.db.getAllTracks().then((value) {
+      setState(() {tracks = value; });
+    });
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class _SQLPageState extends State<MySQLPage> {
         appBar: AppBar(
             title: Text(widget.title)
         ),
-        body: FutureBuilder<List<DeepHouseTrack>>(
+        body: FutureBuilder(
           future: DBProvider.db.getAllTracks(),
           builder: (BuildContext context, AsyncSnapshot<List<DeepHouseTrack>> snapshot) {
             if (snapshot.hasData) {
@@ -124,7 +125,9 @@ class _SQLPageState extends State<MySQLPage> {
             DeepHouseTrack rnd = new DeepHouseTrack(
                 id: random.nextInt(100), name: "test", lengthInMinutes: "3:00"
             );
-            await DBProvider.db.newTrack(rnd);
+            setState(() {
+              DBProvider.db.newTrack(rnd);
+            });
           },
         ),
       ),

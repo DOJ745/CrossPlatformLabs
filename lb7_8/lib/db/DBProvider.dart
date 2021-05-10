@@ -8,7 +8,8 @@ import 'package:path/path.dart';
 class DBProvider {
 
   DBProvider._();
-  static final DBProvider db = DBProvider._();
+
+  static DBProvider db = DBProvider._();
 
   static Database _database;
 
@@ -16,7 +17,6 @@ class DBProvider {
     if (_database != null)
       return _database;
 
-    // if _database is null we instantiate it
     _database = await initDB();
     return _database;
   }
@@ -53,8 +53,8 @@ class DBProvider {
   Future<List<DeepHouseTrack>> getAllTracks() async {
     final db = await database;
     var res = await db.query("Track");
-    List<DeepHouseTrack> list =
-    res.isNotEmpty ? res.map((c) => DeepHouseTrack.fromMap(c)).toList() : [];
+    List<DeepHouseTrack> list = res.isNotEmpty ?
+    res.map((item) => DeepHouseTrack.fromMap(item)).toList() : [];
     return list;
   }
 

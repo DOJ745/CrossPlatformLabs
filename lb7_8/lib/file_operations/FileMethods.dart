@@ -63,7 +63,13 @@ class FileMethods {
       String contents = await file.readAsString();
       return contents + file.path;
     }
-    catch (e) { return e.toString(); }
+    on FileSystemException catch (e) {
+
+      print(e.toString() + "\nDirectory has been changed to local");
+      final file = await _localFile;
+      String contents = await file.readAsString();
+      return contents + file.path;
+    }
   }
   Future<File> writeCacheCounter(String counter) async {
     final file = await _cacheFile;
@@ -76,7 +82,13 @@ class FileMethods {
       String contents = await file.readAsString();
       return contents + file.path;
     }
-    catch (e) { return e.toString(); }
+    on FileSystemException catch (e) {
+
+      print(e.toString() + "\nDirectory has been changed to local");
+      final file = await _localFile;
+      String contents = await file.readAsString();
+      return contents + file.path;
+    }
   }
   Future<File> writeExternalCounter(String counter) async {
     final file = await _externalFile;

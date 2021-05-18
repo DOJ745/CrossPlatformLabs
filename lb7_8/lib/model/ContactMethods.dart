@@ -5,7 +5,7 @@ class ContactAdapter extends TypeAdapter<Contact> {
   @override
   Contact read(BinaryReader reader) {
     var numOfFields = reader.readByte();
-    var fields = <int, dynamic>{
+    var fields = <int, dynamic> {
       for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Contact(

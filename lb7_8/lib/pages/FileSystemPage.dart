@@ -22,7 +22,6 @@ class FileSystemPage extends StatelessWidget {
 class MyFileSysPage extends StatefulWidget {
 
   final String title;
-  //final FileMethods storage;
 
   MyFileSysPage(
       {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lb7_8/model/Contact.dart';
-import 'NewContactForm.dart';
+import 'input_fields/NewContactForm.dart';
 
 
 class ContactPage extends StatelessWidget {
@@ -17,7 +17,9 @@ class ContactPage extends StatelessWidget {
         ),
         body: Column(
             children: <Widget>[
-              Expanded(child: _buildListView()),
+              Expanded(
+                  child: _buildListView()
+              ),
               NewContactForm(),
         ]
         ),
@@ -45,21 +47,15 @@ class ContactPage extends StatelessWidget {
                                   index,
                                   Contact('${contact.name}*', contact.age + 1),
                             );
-                          }
-                          ),
+                          }),
                           IconButton(
                               icon: Icon(Icons.delete),
-                              onPressed: ()
-                              {
-                                contactsBox.deleteAt(index);
-                              }
+                              onPressed: () { contactsBox.deleteAt(index); }
                               )
                         ]
-                    )
+                    ),
                 );
-              }
-              );
-        }
-        );
+              });
+        });
   }
 }

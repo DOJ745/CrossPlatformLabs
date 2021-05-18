@@ -18,9 +18,7 @@ class TripList extends StatelessWidget {
     return ListView.builder(
         itemCount: tripCollection.length,
         itemBuilder: (context, index) {
-          return TripElementNew(
-            //trip: tripCollection.elementAt(index),
-          );
+          return TripElementNew();
         }
     );
   }

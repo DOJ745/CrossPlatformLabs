@@ -48,6 +48,23 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+  assets:
+    - images/catapult.png
+    - images/cat.jpg
+    - images/London.jpg
+    - images/Luksemburg.jpg
+    - images/Redwood.jpg
+    - images/Scotland.jpg
+    - images/icons/autumn_icon.png
+    - images/icons/spring_icon.png
+    - images/icons/summer_icon.png
+    - images/icons/winter_icon.png
+    - images/icons/earth.png
+    - images/peoples/girl1.jpg
+    - images/peoples/girl2.jpg
+    - images/peoples/man1.jpg
+    - images/peoples/man2.jpg
+    - images/peoples/man3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -74,3 +91,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Assistant
+      fonts:
+        - asset: fonts/Assistant-Medium.ttf
+        - asset: fonts/Assistant-Bold.ttf
+        - asset: fonts/Assistant-Regular.ttf
+        - asset: fonts/Assistant-SemiBold.ttf
+          weight: 500

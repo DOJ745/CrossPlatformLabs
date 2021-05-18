@@ -6,12 +6,13 @@ import 'Events/TripEvent.dart';
 
 class TripBloc {
 
+  int index = 0;
   Trip _trip = new Trip();
 
   final _tripStateController = StreamController<Trip>();
 
   StreamSink<Trip> get _inTripElem => _tripStateController.sink;
-  Stream<Trip> get tripElem => _tripStateController.stream;
+  Stream<Trip> get outTripElem => _tripStateController.stream;
 
   final _tripEventController = StreamController<TripEvent>();
 
@@ -21,13 +22,11 @@ class TripBloc {
 
   void _eventToState(TripEvent event) {
 
-    if (event is OpenTripElementCardEvent) {
-      _trip = Trip.createDefaultCollection().elementAt(0);
-    } /*else if (event is DecrementEvent) {
-      _counter--;
-    }*/ else {
-      throw Exception('wrong Event type');
+    if (event is OpenTripElementCardEvent && index < 4) {
+      index++;
+      _trip = Trip.createDefaultCollection().elementAt(index);
     }
+    else { throw Exception('wrong Event type'); }
     _inTripElem.add(_trip);
   }
 

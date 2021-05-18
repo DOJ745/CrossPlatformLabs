@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 
 import 'BlocBase.dart';
 
+// https://inostudio.com/blog/articles-develop/razdelenie-biznes-logiki-i-ui-vo-flutter-s-pomoshchyu-bloc-arkhitektury/
+
 class BlocProvider<T extends BlocBase> extends StatefulWidget {
 
   BlocProvider({

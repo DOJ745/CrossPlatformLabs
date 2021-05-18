@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Trip.dart';
-import 'TripInfoSummary.dart';
+import '../Trip.dart';
+import '../Card/TripInfoSummary.dart';
 
 class TripElement extends StatelessWidget {
   

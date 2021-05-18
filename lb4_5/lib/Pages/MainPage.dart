@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lb4_5/Trip/Trip.dart';
-import 'package:lb4_5/Trip/TripList.dart';
+import 'package:lb4_5/Trip/List/TripList.dart';
 
 class MainPage extends StatelessWidget{
 

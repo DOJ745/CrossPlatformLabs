@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lb4_5/Trip/Trip.dart';
-import 'package:lb4_5/Trip/TripInfoText.dart';
-import '../Trip/TripInfoCard.dart';
+import 'TripInfoCard.dart';
+import 'TripInfoText.dart';
 
 class TripInfoSummary extends StatelessWidget{
 

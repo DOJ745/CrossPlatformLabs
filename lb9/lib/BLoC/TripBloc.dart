@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:lb9/BLoC/BlocBase.dart';
+
 import '../Trip/Trip.dart';
 import 'Events/OpenTripElemenEvent.dart';
 import 'Events/TripEvent.dart';
 
-class TripBloc {
+class TripBloc extends BlocBase {
 
   int index = 0;
   Trip _trip = new Trip();

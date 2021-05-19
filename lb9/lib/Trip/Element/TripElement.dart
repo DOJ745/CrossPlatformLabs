@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lb9/BLoC/BlocProvider.dart';
 import 'package:lb9/BLoC/Events/OpenTripElemenEvent.dart';
 import 'package:lb9/BLoC/TripBloc.dart';
 import 'package:lb9/Trip/Card/TripInfoSummary.dart';
@@ -12,8 +13,6 @@ class TripElementNew extends StatefulWidget {
 }
 
 class _TripElementNewState extends State<TripElementNew> {
-
-  final _blocTrip = TripBloc();
 
   Stack peoplesAccounts(Trip trip) {
 
@@ -81,13 +80,16 @@ class _TripElementNewState extends State<TripElementNew> {
   @override
   Widget build(BuildContext context) {
 
+    final TripBloc bloc = BlocProvider.of(context);
+
+
     return StreamBuilder(
-      stream: _blocTrip.outTripElem, // на вход подаем Stream из BLoC
+      stream: bloc.outTripElem,
       initialData: Trip.createDefaultCollection().elementAt(0),
       builder: (BuildContext context, AsyncSnapshot<Trip> snapshot) {
         return FlatButton(
             onPressed: () {
-              _blocTrip.counterEventSink.add(OpenTripElementCardEvent());
+              bloc.counterEventSink.add(OpenTripElementCardEvent());
               Navigator.push(
                 context,
                 MaterialPageRoute(

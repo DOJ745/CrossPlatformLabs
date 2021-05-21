@@ -7,12 +7,14 @@ class AddTrack extends StatelessWidget {
   final String lengthInMinutes;
   final String name;
 
-  AddTrack(this.lengthInMinutes, this.name);
+  AddTrack(
+      this.lengthInMinutes,
+      this.name);
 
   @override
   Widget build(BuildContext context) {
     // Create a CollectionReference called users that references the firestore collection
-    //Firebase.initializeApp();
+
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     CollectionReference tracks = firestore.collection('tracks');
 
@@ -27,9 +29,20 @@ class AddTrack extends StatelessWidget {
           .catchError((error) => print("Failed to add track: $error"));
     }
 
-    return TextButton(
-      onPressed: addTrack,
-      child: Text("Add Track",),
+    return MaterialApp(
+        theme: ThemeData(
+            visualDensity: VisualDensity.adaptivePlatformDensity
+        ),
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+            appBar: AppBar(
+                title: Text("Title")
+            ),
+            body: TextButton(
+              onPressed: addTrack,
+              child: Text("Add Track",),
+            ),
+        ),
     );
   }
 }

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:lb10/firebase/firestore/ReadTracks.dart';
 import 'firebase/firestore/AddTrack.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'firebase/firestore/AddTrack.dart';
+import 'firebase/firestore/AddTrack.dart';
 
 void main() {
   runApp(MyApp());
@@ -77,10 +81,6 @@ class _AppState extends State<App> {
 }*/
 
 
-
-
-
-
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -96,9 +96,8 @@ class MyApp extends StatelessWidget {
 }
 
 
-
-
 class FirstRoute extends StatefulWidget {
+
   FirstRoute({Key key, this.title}) : super(key: key);
   final String title;
 
@@ -116,22 +115,25 @@ class _FirstRouteState extends State<FirstRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("test"),
+          title: Text("LB10 Firestore"),
         ),
         body: FutureBuilder(
           future: getData(),
           builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               return Column(
-                children: [
+                children: <Widget>[
+
                   Container(
-                    height: 25,
-                    child: Text(
-                      "DATA: ${snapshot.data.toString()}",
-                      overflow: TextOverflow.fade,
-                      style: TextStyle(fontSize: 20),
-                    ),
+                    height: 300,
+                    child: ReadTracks(),
                   ),
+
+                  Container(
+                    height: 50,
+                    child: AddTrack("123", "123"),
+                  ),
+
                 ],
               );
             } else if (snapshot.connectionState == ConnectionState.none) {
@@ -139,14 +141,13 @@ class _FirstRouteState extends State<FirstRoute> {
             }
             return CircularProgressIndicator();
           },
-        ));
+        ),
+    );
   }
 
   Future<DocumentSnapshot> getData() async {
     await Firebase.initializeApp();
     return await FirebaseFirestore.instance
-        .collection("users")
-        .doc("docID")
-        .get();
+        .collection("tracks").doc().get();
   }
 }

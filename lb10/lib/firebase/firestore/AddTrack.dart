@@ -29,20 +29,9 @@ class AddTrack extends StatelessWidget {
           .catchError((error) => print("Failed to add track: $error"));
     }
 
-    return MaterialApp(
-        theme: ThemeData(
-            visualDensity: VisualDensity.adaptivePlatformDensity
-        ),
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-            appBar: AppBar(
-                title: Text("Title")
-            ),
-            body: TextButton(
-              onPressed: addTrack,
-              child: Text("Add Track",),
-            ),
-        ),
+    return ElevatedButton(
+        onPressed: addTrack,
+        child: Text("Add Test Track",)
     );
   }
 }

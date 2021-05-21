@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddTrack extends StatelessWidget {
@@ -12,8 +12,9 @@ class AddTrack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Create a CollectionReference called users that references the firestore collection
-    final firestoreInstance = FirebaseFirestore.instance;
-    CollectionReference tracks = firestoreInstance.collection('tracks');
+    //Firebase.initializeApp();
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    CollectionReference tracks = firestore.collection('tracks');
 
     Future<void> addTrack() {
       // Call the user's CollectionReference to add a new user

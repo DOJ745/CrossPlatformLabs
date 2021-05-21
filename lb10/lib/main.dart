@@ -1,86 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:lb10/firebase/firestore/ReadTracks.dart';
-import 'firebase/firestore/AddTrack.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:lb10/pages/FirestorePage.dart';
 
-import 'firebase/firestore/AddTrack.dart';
-import 'firebase/firestore/AddTrack.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-/*
-class App extends StatefulWidget {
-  _AppState createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  // Set default `_initialized` and `_error` state to false
-
-  bool _initialized = false;
-  bool _error = false;
-
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-  Future<void> addTrack(String lengthInMinutes, String name) async {
-    // Call the user's CollectionReference to add a new user
-    CollectionReference tracks = firestore.collection('tracks');
-    return await tracks
-        .add({
-      'lengthInMinutes': lengthInMinutes,
-      'name': name
-    })
-        .then((value) => print("Track has been  added!"))
-        .catchError((error) => print("Failed to add track: $error"));
-  }
-
-  // Define an async function to initialize FlutterFire
-  void initializeFlutterFire() async {
-    try {
-      // Wait for Firebase to initialize and set `_initialized` state to true
-      await Firebase.initializeApp();
-      setState(() {
-        _initialized = true;
-      });
-    } catch(e) {
-      // Set `_error` state to true if Firebase initialization fails
-      setState(() {
-        _error = true;
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    initializeFlutterFire();
-    super.initState();
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          visualDensity: VisualDensity.adaptivePlatformDensity
-      ),
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-            title: Text("Title")
-        ),
-        body: TextButton(
-          onPressed: () async{
-            addTrack("test", "test123");
-          },
-          child: Text("Add Track",),
-        ),
+        body: PageViewerWidget(),
       ),
     );
   }
-}*/
+}
 
+class PageViewerWidget extends StatelessWidget {
 
+  const PageViewerWidget({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final PageController controller = PageController(initialPage: 0);
+    return PageView(
+      scrollDirection: Axis.horizontal,
+      controller: controller,
+      children: <Widget>[
+        Center(
+            child: FirestorePage()
+        ),
+        Center(
+            //child: SharedPreferPage()
+        ),
+        Center(
+            //child: FileSystemPage()
+        ),
+        Center(
+          //child: HivePage(),
+        )
+      ],
+    );
+  }
+}
+
+/*
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -93,61 +62,4 @@ class MyApp extends StatelessWidget {
       home: FirstRoute(title: 'First Route'),
     );
   }
-}
-
-
-class FirstRoute extends StatefulWidget {
-
-  FirstRoute({Key key, this.title}) : super(key: key);
-  final String title;
-
-  @override
-  _FirstRouteState createState() => _FirstRouteState();
-}
-
-class _FirstRouteState extends State<FirstRoute> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("LB10 Firestore"),
-        ),
-        body: FutureBuilder(
-          future: getData(),
-          builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return Column(
-                children: <Widget>[
-
-                  Container(
-                    height: 300,
-                    child: ReadTracks(),
-                  ),
-
-                  Container(
-                    height: 50,
-                    child: AddTrack("123", "123"),
-                  ),
-
-                ],
-              );
-            } else if (snapshot.connectionState == ConnectionState.none) {
-              return Text("No data");
-            }
-            return CircularProgressIndicator();
-          },
-        ),
-    );
-  }
-
-  Future<DocumentSnapshot> getData() async {
-    await Firebase.initializeApp();
-    return await FirebaseFirestore.instance
-        .collection("tracks").doc().get();
-  }
-}
+}*/

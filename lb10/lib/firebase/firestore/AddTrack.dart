@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddTrack extends StatelessWidget {
@@ -31,7 +30,12 @@ class AddTrack extends StatelessWidget {
 
     return ElevatedButton(
         onPressed: addTrack,
-        child: Text("Add Test Track",)
+        child: Text(
+          "Add Test Track",
+          style: TextStyle(
+            fontSize: 22,
+          ),
+        ),
     );
   }
 }

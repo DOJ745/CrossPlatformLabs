@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "822905855176",
+    "project_id": "flutterlb10",
+    "storage_bucket": "flutterlb10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822905855176:android:930cf28dc5dc138bd719fd",
+        "android_client_info": {
+          "package_name": "com.faa.lb10"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822905855176-msr1v78uafgr3c528e8rv3ol4pvgjtph.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQuK3Q71JF4_YPYOggzU3hhIbm_P5zQ4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822905855176-msr1v78uafgr3c528e8rv3ol4pvgjtph.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

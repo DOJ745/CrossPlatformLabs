@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'firebase/Firestore/AddTrack.dart';
+
 void main() {
-  runApp(MyApp());
+  //runApp(MyApp());
+  runApp(AddTrack("3:00", "test"));
 }
 
 class MyApp extends StatelessWidget {

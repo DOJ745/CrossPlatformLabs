@@ -55,10 +55,9 @@ class _MyAuthPageState extends State<MyAuthPage> {
         if (user != null) {
           _userId = user?.uid;
         }
-        else{
-          authStatus =
-          user?.uid == null ? AuthStatus.LOGGED_OUT : AuthStatus.LOGGED_IN;
-        }
+        //else{
+          authStatus = user?.uid == null ? AuthStatus.LOGGED_OUT : AuthStatus.LOGGED_IN;
+        //}
       });
     });
   }

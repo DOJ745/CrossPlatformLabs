@@ -12,6 +12,7 @@ class Auth implements BaseAuth {
 
   //final FirebaseAuth firebaseAuth;
   //Auth(this.firebaseAuth);
+
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   Future<String> signIn(String email, String password) async {

@@ -13,16 +13,36 @@ Future<dynamic> _firebaseMessagingBackgroundHandler(
   print('onBackgroundMessage received: $message');
 }
 
-class MessagingPage extends StatefulWidget {
+class MessagingPage extends StatelessWidget {
   @override
-  _MessagingPageState createState() => _MessagingPageState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: MyMessagingPage(title: 'LB10 (Messaging)'),
+    );
+  }
 }
 
-class _MessagingPageState extends State<MessagingPage> {
+class MyMessagingPage extends StatefulWidget {
+
+  final String title;
+  MyMessagingPage({Key key, this.title}) : super(key: key);
+
+
+  @override
+  _MyMessagingPageState createState() => _MyMessagingPageState();
+}
+
+class _MyMessagingPageState extends State<MyMessagingPage> {
 
   FirebaseMessaging _messaging = FirebaseMessaging();
   int _totalNotifications;
   PushNotification _notificationInfo;
+
 
   void registerNotification() async {
 
@@ -88,55 +108,62 @@ class _MessagingPageState extends State<MessagingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('LB10 (Messages)'),
-        brightness: Brightness.light,
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'App for capturing Firebase Push Notifications',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-            ),
+    return MaterialApp(
+        theme: ThemeData(
+            visualDensity:VisualDensity.adaptivePlatformDensity
+        ),
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text(widget.title),
+            brightness: Brightness.light,
           ),
-
-          SizedBox(height: 16.0),
-          NotificationBadge(totalNotifications: _totalNotifications),
-          SizedBox(height: 16.0),
-
-          _notificationInfo != null ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
               Text(
-                'TITLE: ${_notificationInfo.title ?? _notificationInfo.dataTitle}',
+                'App for capturing Firebase Push Notifications',
+                textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                   fontSize: 20,
                 ),
               ),
 
-              SizedBox(height: 8.0),
+              SizedBox(height: 16.0),
+              NotificationBadge(totalNotifications: _totalNotifications),
+              SizedBox(height: 16.0),
 
-              Text(
-                'BODY: ${_notificationInfo.body ?? _notificationInfo.dataBody}',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
+              _notificationInfo != null ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                  Text(
+                    'TITLE: ${_notificationInfo.title ?? _notificationInfo.dataTitle}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+
+                  SizedBox(height: 8.0),
+
+                  Text(
+                    'BODY: ${_notificationInfo.body ?? _notificationInfo.dataBody}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+
+                ],
+              )
+                  : Container(),
 
             ],
-          )
-              : Container(),
-
-        ],
-      ),
+          ),
+        ),
     );
   }
 }

@@ -48,16 +48,14 @@ class _MyAuthPageState extends State<MyAuthPage> {
 
   @override
   void initState() {
-
     super.initState();
     widget.auth.getCurrentUser().then((user) {
       setState(() {
         if (user != null) {
           _userId = user?.uid;
         }
-        //else{
-          authStatus = user?.uid == null ? AuthStatus.LOGGED_OUT : AuthStatus.LOGGED_IN;
-        //}
+        authStatus =
+        user?.uid == null ? AuthStatus.LOGGED_OUT : AuthStatus.LOGGED_IN;
       });
     });
   }

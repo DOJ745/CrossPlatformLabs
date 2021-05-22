@@ -24,11 +24,11 @@ class _ReadTracksState extends State<ReadTracks> {
           return Text("Loading");
         }
 
-        return new ListView(
+        return ListView(
           children: snapshot.data.docs.map((DocumentSnapshot document) {
-            return new ListTile(
-              title: new Text(document.data()['name']),
-              subtitle: new Text(document.data()['lengthInMinutes']),
+            return ListTile(
+              title: Text((document.data() as Map<String, dynamic>)['name']),
+              subtitle: Text((document.data() as Map<String, dynamic>)['lengthInMinutes']),
             );
           }).toList(),
         );

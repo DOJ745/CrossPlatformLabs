@@ -30,7 +30,6 @@ class _HomePageState extends State<HomePage> {
         title: Text('LB10 (Home)'),
         actions: <Widget>[
           new FlatButton(
-
               child: Text('Logout',
                   style: TextStyle(
                       fontSize: 17.0,
@@ -41,7 +40,13 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Center(
-        child: Text("hello"),
+        child: Text(
+            "Hello user",
+          style: TextStyle(
+            fontSize: 22,
+            color: Colors.black
+          ),
+        ),
       ),
     );
   }

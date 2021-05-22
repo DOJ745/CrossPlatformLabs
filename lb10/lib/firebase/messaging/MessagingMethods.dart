@@ -1,22 +1,19 @@
 import 'dart:async';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lb10/pages/MessagingPage.dart';
 
+/*
 class MessagingMethods {
 
   Future<dynamic> myBackgroundMessageHandler(Map<String, dynamic> message) {
     if (message.containsKey('data')) {
-      // Handle data message
       final dynamic data = message['data'];
     }
 
     if (message.containsKey('notification')) {
-      // Handle notification message
       final dynamic notification = message['notification'];
     }
-
-    // Or do other work.
   }
 
   final Map<String, Item> _items = <String, Item>{};
@@ -69,9 +66,9 @@ class Item {
           () =>
           MaterialPageRoute<void>(
             settings: RouteSettings(name: routeName),
-            builder: (BuildContext context) => DetailPage(itemId),
+            builder: (BuildContext context) => MessagingPage(itemId),
           ),
     );
   }
 
-}
+}*/

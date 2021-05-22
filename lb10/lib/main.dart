@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lb10/pages/FirestorePage.dart';
+import 'package:lb10/pages/MessagingPage.dart';
 import 'package:lb10/pages/auth_pages/AuthPage.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -51,7 +52,7 @@ class PageViewerWidget extends StatelessWidget {
         ),
 
         Center(
-            //child: FileSystemPage()
+            //child: MessagingPage()
         ),
       ],
     );

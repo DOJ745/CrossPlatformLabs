@@ -99,7 +99,7 @@ class _MyAuthPageState extends State<MyAuthPage> {
         break;
 
       case AuthStatus.LOGGED_OUT:
-        return LoginSignupPage(
+        return new LoginSignupPage(
           auth: widget.auth,
           onSignedIn: _onLoggedIn,
         );
@@ -107,13 +107,12 @@ class _MyAuthPageState extends State<MyAuthPage> {
 
       case AuthStatus.LOGGED_IN:
         if (_userId.length > 0 && _userId != null) {
-          return HomePage(
+          return new HomePage(
             userId: _userId,
             auth: widget.auth,
             onSignedOut: _onSignedOut,
           );
-        }
-        else
+        } else
           return progressScreenWidget();
         break;
 

@@ -29,12 +29,12 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new Scaffold(
       appBar: AppBar(
         title: Text("LB10 (Login)"),
       ),
       body:
-      Container(
+      new Container(
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -83,10 +83,10 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
       child: TextFormField(
         maxLines: 1,
         keyboardType: TextInputType.emailAddress,
-        //autofocus: false,
+        autofocus: false,
         decoration: InputDecoration(
             hintText: 'Enter Email',
-            icon: Icon(
+            icon: new Icon(
               Icons.mail,
               color: Colors.grey,
             )
@@ -106,7 +106,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         autofocus: false,
         decoration: InputDecoration(
             hintText: 'Password',
-            icon: Icon(
+            icon: new Icon(
               Icons.lock,
               color: Colors.grey,
             )),
@@ -119,7 +119,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   Widget loginButtonWidget() {
     return new Padding(
         padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
-        child: MaterialButton(
+        child: new MaterialButton(
           elevation: 5.0,
           minWidth: 200.0,
           height: 42.0,
@@ -134,7 +134,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   }
 
   Widget secondaryButton() {
-    return FlatButton(
+    return new FlatButton(
       child: _formMode == FormMode.LOGIN
           ? Text('Create an account',
           style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300))
@@ -165,7 +165,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget errorWidget() {
     if (_errorMessage.length > 0 && _errorMessage != null) {
-      return Text(
+      return new Text(
         _errorMessage,
         style: TextStyle(
             fontSize: 13.0,
@@ -175,7 +175,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
       );
     }
     else {
-      return Container( height: 0.0, );
+      return new Container( height: 0.0, );
     }
   }
 
@@ -189,7 +189,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     return false;
   }
 
-  _validateAndSubmit() async {
+  Future<void> _validateAndSubmit() async {
 
     setState(() {
       _errorMessage = "";
@@ -216,16 +216,12 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
         setState(() {
           _isLoading = false;
-
-          if (_isIos) {_errorMessage = e.details; }
+          if (_isIos) { _errorMessage = e.details; }
           else
             _errorMessage = e.message;
-        }
-        );
+        });
+
       }
-    }
-    else {
-      setState(() { _isLoading = false; });
-    }
+    } else { setState(() { _isLoading = false; }); }
   }
 }

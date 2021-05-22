@@ -25,11 +25,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new Scaffold(
       appBar: AppBar(
         title: Text('LB10 (Home)'),
         actions: <Widget>[
-          FlatButton(
+          new FlatButton(
 
               child: Text('Logout',
                   style: TextStyle(

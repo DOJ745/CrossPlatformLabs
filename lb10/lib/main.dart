@@ -5,6 +5,8 @@ import 'package:lb10/pages/auth_pages/AuthPage.dart';
 
 import 'package:overlay_support/overlay_support.dart';
 
+// https://blog.logrocket.com/flutter-push-notifications-with-firebase-cloud-messaging/
+
 void main() {
   runApp(MyApp());
 }

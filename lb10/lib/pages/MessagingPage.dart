@@ -5,7 +5,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lb10/firebase/messaging/PushNotification.dart';
+import 'package:overlay_support/overlay_support.dart';
 
+Future<dynamic> _firebaseMessagingBackgroundHandler(
+    Map<String, dynamic> message,) async {
+  await Firebase.initializeApp();
+  print('onBackgroundMessage received: $message');
+}
 
 class MessagingPage extends StatefulWidget {
   @override
@@ -16,32 +22,63 @@ class _MessagingPageState extends State<MessagingPage> {
 
   FirebaseMessaging _messaging = FirebaseMessaging();
   int _totalNotifications;
+  PushNotification _notificationInfo;
 
   void registerNotification() async {
 
-    PushNotification _notificationInfo;
-    await Firebase.initializeApp();
-
-    // TODO: handle the received notifications
+    // For handling the received notifications
     _messaging.configure(
-      onMessage: (message) async {
 
-        print('onMessage received: $message');
+        onBackgroundMessage: _firebaseMessagingBackgroundHandler,
 
-        PushNotification notification = PushNotification.fromJson(message);
+        onLaunch: (message) async {
+          print('onLaunch: $message');
 
-        setState(() {
-          _notificationInfo = notification;
-          _totalNotifications++;
+          PushNotification notification = PushNotification.fromJson(message);
+
+          setState(() {
+            _notificationInfo = notification;
+            _totalNotifications++;
+          });
+        },
+
+        onResume: (message) async {
+          print('onResume: $message');
+
+          PushNotification notification = PushNotification.fromJson(message);
+
+          setState(() {
+            _notificationInfo = notification;
+            _totalNotifications++;
+          });
+        },
+
+        onMessage: (message) async {
+
+          print('onMessage received: $message');
+
+          // For displaying the notification as an overlay
+          showSimpleNotification(
+            Text(_notificationInfo.title),
+            leading: NotificationBadge(totalNotifications: _totalNotifications),
+            subtitle: Text(_notificationInfo.body),
+            background: Colors.cyan[700],
+            duration: Duration(seconds: 5),
+          );
+
+          // Parse the message received
+          PushNotification notification = PushNotification.fromJson(message);
+
+          setState(() {
+            _notificationInfo = notification;
+            _totalNotifications++;
+          });
+
         });
-      },
-    );
 
     _messaging.getToken().then((token) { print('Token: $token'); } )
-        .catchError( (e) { print(e); } );
-
+        .catchError((e) { print(e); } );
   }
-
 
   @override
   void initState() {
@@ -53,8 +90,8 @@ class _MessagingPageState extends State<MessagingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notify'),
-        brightness: Brightness.dark,
+        title: Text('LB10 (Messages)'),
+        brightness: Brightness.light,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -67,10 +104,37 @@ class _MessagingPageState extends State<MessagingPage> {
               fontSize: 20,
             ),
           ),
+
           SizedBox(height: 16.0),
           NotificationBadge(totalNotifications: _totalNotifications),
           SizedBox(height: 16.0),
-          // TODO: add the notification text here
+
+          _notificationInfo != null ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              Text(
+                'TITLE: ${_notificationInfo.title ?? _notificationInfo.dataTitle}',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+
+              SizedBox(height: 8.0),
+
+              Text(
+                'BODY: ${_notificationInfo.body ?? _notificationInfo.dataBody}',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+
+            ],
+          )
+              : Container(),
+
         ],
       ),
     );

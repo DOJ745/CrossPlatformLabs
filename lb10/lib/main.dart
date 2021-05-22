@@ -3,15 +3,9 @@ import 'package:lb10/pages/FirestorePage.dart';
 import 'package:lb10/pages/MessagingPage.dart';
 import 'package:lb10/pages/auth_pages/AuthPage.dart';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 void main() {
-
-  //await Firebase.initializeApp();
-  //FirebaseFirestore firestore = FirebaseFirestore.instance;
-
   runApp(MyApp());
 }
 
@@ -55,7 +49,7 @@ class PageViewerWidget extends StatelessWidget {
         ),
 
         Center(
-            //child: MessagingPage()
+            child: MessagingPage()
         ),
       ],
     );

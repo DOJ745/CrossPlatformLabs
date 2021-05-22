@@ -160,7 +160,6 @@ class _MyMessagingPageState extends State<MyMessagingPage> {
                 ],
               )
                   : Container(),
-
             ],
           ),
         ),

@@ -5,6 +5,7 @@ import 'package:lb10/pages/auth_pages/AuthPage.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:overlay_support/overlay_support.dart';
 
 void main() {
 
@@ -20,11 +21,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.white),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: PageViewerWidget(),
+    return OverlaySupport(
+      child: MaterialApp(
+        theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.white),
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: PageViewerWidget(),
+        ),
       ),
     );
   }

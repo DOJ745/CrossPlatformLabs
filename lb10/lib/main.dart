@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:lb10/pages/FirestorePage.dart';
 import 'package:lb10/pages/MessagingPage.dart';
@@ -7,7 +9,15 @@ import 'package:overlay_support/overlay_support.dart';
 
 // https://blog.logrocket.com/flutter-push-notifications-with-firebase-cloud-messaging/
 
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+
+  print("HANDLING a background message: ${message.messageId}");
+}
+
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(MyApp());
 }
 

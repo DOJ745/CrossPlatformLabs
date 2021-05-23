@@ -7,11 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:lb10/firebase/messaging/PushNotification.dart';
 import 'package:overlay_support/overlay_support.dart';
 
+/*
 Future<dynamic> _firebaseMessagingBackgroundHandler(
     Map<String, dynamic> message,) async {
   await Firebase.initializeApp();
   print('onBackgroundMessage received: $message');
-}
+}*/
 
 class MessagingPage extends StatelessWidget {
   @override
@@ -40,12 +41,33 @@ class MyMessagingPage extends StatefulWidget {
 class _MyMessagingPageState extends State<MyMessagingPage> {
 
   // Test
-  FirebaseMessaging _messaging = FirebaseMessaging();
+  FirebaseMessaging _messaging = FirebaseMessaging.instance;
   int _totalNotifications;
   PushNotification _notificationInfo;
 
+  void testMethod() async {
 
-  void registerNotification() async {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+
+      print('GOT a message whilst in the foreground!');
+      print('MESSAGE data: ${message.data}');
+
+      //_notificationInfo.body = message.data.toString();
+      if (message.notification != null) {
+        print('Message also contained a notification: ${message.notification}');
+
+
+        setState(() {
+          _notificationInfo.body = message.messageId;
+          _totalNotifications++;
+        });
+      }
+
+    });
+
+  }
+
+  /*void registerNotification() async {
 
     // For handling the received notifications
     _messaging.configure(
@@ -99,12 +121,20 @@ class _MyMessagingPageState extends State<MyMessagingPage> {
 
     _messaging.getToken().then((token) { print('Token: $token'); } )
         .catchError((e) { print(e); } );
-  }
+  }*/
 
   @override
   void initState() {
     _totalNotifications = 0;
     super.initState();
+
+    /*RemoteMessage initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
+
+
+    if (initialMessage?.data['type'] == 'chat') {
+      Navigator.pushNamed(context, '/chat',
+          arguments: ChatArguments(initialMessage));*/
   }
 
   @override
@@ -171,7 +201,6 @@ class _MyMessagingPageState extends State<MyMessagingPage> {
 class NotificationBadge extends StatelessWidget {
 
   final int totalNotifications;
-
   const NotificationBadge({@required this.totalNotifications});
 
   @override

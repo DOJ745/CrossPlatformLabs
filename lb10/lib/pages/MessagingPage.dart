@@ -39,6 +39,7 @@ class MyMessagingPage extends StatefulWidget {
 
 class _MyMessagingPageState extends State<MyMessagingPage> {
 
+  // Test
   FirebaseMessaging _messaging = FirebaseMessaging();
   int _totalNotifications;
   PushNotification _notificationInfo;

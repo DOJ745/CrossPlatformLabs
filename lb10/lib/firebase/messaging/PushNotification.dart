@@ -7,6 +7,7 @@ class PushNotification {
     this.dataBody,
   });
 
+
   String title;
   String body;
   String dataTitle;

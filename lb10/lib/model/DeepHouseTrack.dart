@@ -1,11 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class DeepHouseTrack {
 
+  int id;
   String lengthInMinutes;
   String name;
 
   DeepHouseTrack({
     this.name,
-    this.lengthInMinutes
+    this.lengthInMinutes,
+    this.id
   });
 
   DeepHouseTrack.nonamed()
@@ -18,6 +22,14 @@ class DeepHouseTrack {
 
   void showGenre() {
     print("Deep House");
+  }
+
+  static DeepHouseTrack fromDoc(QueryDocumentSnapshot doc) {
+    return DeepHouseTrack(
+      id: doc['id'],
+      name: doc['name'],
+      lengthInMinutes: doc['lengthInMinutes'],
+    );
   }
 
   factory DeepHouseTrack.fromMap(Map<String, dynamic> json) => new DeepHouseTrack(

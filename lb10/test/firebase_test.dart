@@ -11,7 +11,7 @@ void main() {
       'name': "TEST TRACK",
       'lengthInMinutes': "4:00"
     });
-    
+
     final snapshot = await instance.collection('tracks').get();
     DeepHouseTrack testTrack = DeepHouseTrack.fromDoc(snapshot.docs.first);
 

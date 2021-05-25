@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:lb10/pages/FirestorePage.dart';
 import 'package:lb10/pages/MessagingPage.dart';
+import 'package:lb10/pages/TestWidget.dart';
 import 'package:lb10/pages/auth_pages/AuthPage.dart';
 
 import 'package:overlay_support/overlay_support.dart';
@@ -61,6 +62,10 @@ class PageViewerWidget extends StatelessWidget {
         Center(
             child: MessagingPage()
         ),
+
+        Center(
+          child: TestWidget(),
+        )
       ],
     );
   }

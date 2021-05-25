@@ -10,8 +10,6 @@ import 'package:overlay_support/overlay_support.dart';
 // https://blog.logrocket.com/flutter-push-notifications-with-firebase-cloud-messaging/
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-
   print("HANDLING a background message: ${message.messageId}");
 }
 

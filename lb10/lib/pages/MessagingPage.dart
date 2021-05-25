@@ -7,13 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:lb10/firebase/messaging/PushNotification.dart';
 import 'package:overlay_support/overlay_support.dart';
 
-/*
-Future<dynamic> _firebaseMessagingBackgroundHandler(
-    Map<String, dynamic> message,) async {
-  await Firebase.initializeApp();
-  print('onBackgroundMessage received: $message');
-}*/
-
 class MessagingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -43,18 +36,16 @@ class _MyMessagingPageState extends State<MyMessagingPage> {
   int _totalNotifications;
   PushNotification _notificationInfo = new PushNotification();
 
-
   @override
   void initState() {
     super.initState();
-
-    //FirebaseMessaging _messaging = FirebaseMessaging.instance;
 
     _totalNotifications = 0;
 
     FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage message) {
+
       if (message != null) {
 
         setState(() {
@@ -85,6 +76,7 @@ class _MyMessagingPageState extends State<MyMessagingPage> {
       }
 
     });*/
+
   }
 
   @override
@@ -103,8 +95,24 @@ class _MyMessagingPageState extends State<MyMessagingPage> {
             future: getMsgData(),
             builder: (context, AsyncSnapshot<RemoteMessage> snapshot){
               if (snapshot.connectionState == ConnectionState.done && snapshot.data != null) {
-                return Text("Data: " + snapshot.data.data["body"]);
+
+                _totalNotifications++;
+                _notificationInfo.title = snapshot.data.data["title"];
+                _notificationInfo.body = snapshot.data.data["body"];
+                _notificationInfo.dataTitle = snapshot.data.data["dataTitle"];
+                _notificationInfo.dataBody = snapshot.data.data["dataBody"];
+
+                return Column(
+                  children: <Widget>[
+                    Text("Data BODY: ${_notificationInfo.body}"),
+                    Text("Data TITLE: ${_notificationInfo.title}"),
+                    Text("dataBody: ${_notificationInfo.dataBody}"),
+                    Text("dataTitle: ${_notificationInfo.dataTitle}"),
+                    Text("Count: $_totalNotifications"),
+                  ],
+                );
               }
+
               else if (snapshot.connectionState == ConnectionState.none) {
                 return Text("No data");
               }
@@ -209,32 +217,5 @@ class NotificationBadge extends StatelessWidget {
 }
 
 Future<RemoteMessage> getMsgData() async {
-
-  PushNotification msgData = new PushNotification();
-
-  /*FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-
-    print('GOT a message whilst in the foreground!');
-    print('MESSAGE data: ${message.data}');
-
-    if (message.notification != null) {
-      print('Message also contained a notification: ${message.notification}');
-    }
-
-  });*/
-
-  return await FirebaseMessaging.instance.getInitialMessage();
-
-  /*await FirebaseMessaging.instance
-      .getInitialMessage()
-      .then((RemoteMessage message) {
-    if (message != null) {
-      msgData.title = message.data["title"];
-      msgData.body = message.data["body"];
-      msgData.dataTitle = message.data["dataTitle"];
-      msgData.dataBody = message.data["dataBody"];
-    }
-  });
-
-  return msgData;*/
+  return FirebaseMessaging.instance.getInitialMessage();
 }

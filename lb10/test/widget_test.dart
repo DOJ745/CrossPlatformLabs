@@ -37,7 +37,9 @@ void main() {
     await tester.pumpWidget(TestWidget());
     await tester.pumpAndSettle();
 
-    await tester.enterText(find.byType(TextField), 'test-text');
+    const textFieldKey = Key("textField");
+
+    await tester.enterText(find.byKey(textFieldKey), 'test-text');
 
     await tester.tap(find.byType(FloatingActionButton));
     await tester.pump();

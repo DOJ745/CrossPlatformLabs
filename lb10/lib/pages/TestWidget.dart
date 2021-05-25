@@ -30,6 +30,7 @@ class _TestWidgetState extends State<TestWidget> {
         body: Column(
           children: [
             TextField(
+              key: Key("textField"),
               autofocus: false,
               controller: controller,
               decoration: InputDecoration(

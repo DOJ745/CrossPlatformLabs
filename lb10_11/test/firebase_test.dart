@@ -3,7 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lb10/model/DeepHouseTrack.dart';
 
 void main() {
-  test('TRACK fromDoc', () async {
+  test('TRACK from Firestore', () async {
+
     final instance = MockFirestoreInstance();
 
     await instance.collection('tracks').add({
@@ -16,5 +17,6 @@ void main() {
     DeepHouseTrack testTrack = DeepHouseTrack.fromDoc(snapshot.docs.first);
 
     expect(testTrack.id, 123);
+
   });
 }
